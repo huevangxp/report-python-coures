@@ -1,7 +1,7 @@
 /* ==========================================================================
-   ADVANCED PYTHON COURSE REPORT — FULLSCREEN LANDSCAPE SLIDE STYLESHEET
-   ອອກແບບເປັນສະໄລ້ແນວນອນເຕັມຈໍ (100vw x 100vh Widescreen Landscape Presentation)
+   ADVANCED PYTHON COURSE REPORT — FULLSCREEN & RESPONSIVE SLIDE STYLESHEET
    100% ພາສາລາວ (ຄຳອະທິບາຍ) & 100% ພາສາອັງກິດ (ໂຄ້ດ)
+   Widescreen Landscape Fullscreen on Desktop | Seamless Adaptive on Mobile
    ========================================================================== */
 
 :root {
@@ -20,7 +20,7 @@
   --bg-surface: #ffffff;
   --bg-card: #ffffff;
   --bg-card-hover: #f0fdfa;
-  --bg-glass: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(255, 255, 255, 0.94);
   --border: #e2e8f0;
   --border-focus: #14b8a6;
   --border-subtle: #f1f5f9;
@@ -88,7 +88,7 @@
 }
 
 /* ==========================================================================
-   RESET & FULLSCREEN PAGE CANVAS (100vw x 100vh — No Page Scroll)
+   RESET & FULLSCREEN PAGE CANVAS (100vw x 100vh)
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -101,11 +101,11 @@ html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* No page-level scrollbar! Everything fits full screen */
+  overflow: hidden;
   background-color: var(--bg);
   color: var(--text-main);
   font-family: var(--font-main);
-  line-height: 1.5;
+  line-height: 1.55;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -124,7 +124,7 @@ body {
     radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 45%);
 }
 
-/* Presentation Wrapper (Full Viewport) */
+/* Presentation Wrapper (Full Viewport Shell) */
 .presentation-wrapper {
   width: 100vw;
   height: 100vh;
@@ -135,7 +135,7 @@ body {
 }
 
 /* ==========================================================================
-   TOP BAR (Compact Header — 48px Fixed)
+   TOP BAR (Compact Navigation Dock)
    ========================================================================== */
 .presentation-top-bar {
   height: 48px;
@@ -148,7 +148,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 10;
+  z-index: 20;
 }
 
 /* Day Jump Navigator */
@@ -160,6 +160,13 @@ body {
   padding: 3px 5px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.day-jump-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .day-filter-btn {
@@ -193,11 +200,12 @@ body {
 .day-filter-btn[data-day="day2"].active { background: var(--day2-color); }
 .day-filter-btn[data-day="day3"].active { background: var(--day3-color); }
 
-/* Tools */
+/* Quick Tools */
 .deck-quick-tools {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .btn-deck-tool {
@@ -241,7 +249,7 @@ body {
 }
 
 /* ==========================================================================
-   SLIDE STAGE CONTAINER (Fills Remaining Screen Height)
+   SLIDE STAGE CONTAINER
    ========================================================================== */
 #slideStageContainer {
   flex: 1;
@@ -258,7 +266,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px 28px 10px 28px;
+  padding: 14px 28px 10px 28px;
   box-sizing: border-box;
   overflow: hidden;
   animation: slideFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -281,7 +289,8 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
 }
 
 .slide-day-badge {
@@ -312,30 +321,30 @@ body {
   font-size: 1.55rem;
   font-weight: 900;
   color: var(--text-main);
-  line-height: 1.25;
-  margin-bottom: 4px;
+  line-height: 1.3;
+  margin-bottom: 3px;
 }
 
 .slide-subtitle-desc {
   font-size: 0.92rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ==========================================================================
-   HORIZONTAL SPLIT BODY (Left: Lao Explanations, Right: English Code)
+   HORIZONTAL SPLIT BODY (Widescreen Landscape)
    ========================================================================== */
 .slide-split-body {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1.08fr;
+  grid-template-columns: 1fr 1.05fr;
   gap: 20px;
   align-items: stretch;
   overflow: hidden;
 }
 
-/* Left Column: Information (Scrolls smoothly internally if needed) */
+/* Left Column: Information (Lao) */
 .slide-info-column {
   height: 100%;
   min-height: 0;
@@ -379,7 +388,7 @@ body {
 .callout-text {
   font-size: 0.88rem;
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* Learning Section */
@@ -420,7 +429,7 @@ body {
   padding-left: 16px;
   font-size: 0.84rem;
   color: var(--text-main);
-  line-height: 1.48;
+  line-height: 1.5;
 }
 
 .learning-list li::before {
@@ -461,7 +470,7 @@ body {
 .usage-text {
   font-size: 0.82rem;
   color: var(--text-muted);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 /* Labs Section */
@@ -533,7 +542,7 @@ body {
   overflow: hidden;
 }
 
-/* Code Terminal Card (Fills height comfortably) */
+/* Code Terminal Card */
 .code-terminal-card {
   flex: 1;
   min-height: 0;
@@ -611,7 +620,7 @@ body {
   overflow: auto;
   font-family: var(--font-mono);
   font-size: 0.81rem;
-  line-height: 1.52;
+  line-height: 1.54;
   color: #e2e8f0;
   white-space: pre;
   tab-size: 4;
@@ -669,11 +678,11 @@ body {
 .takeaway-content p {
   font-size: 0.82rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ==========================================================================
-   BOTTOM CONTROLLER DOCK (Single Horizontal Row — 54px Fixed)
+   BOTTOM CONTROLLER DOCK (Single Horizontal Row)
    ========================================================================== */
 .slide-controller-bar {
   height: 54px;
@@ -686,14 +695,14 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .btn-nav-slide {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-full);
   font-size: 0.84rem;
   font-weight: 800;
@@ -764,7 +773,9 @@ body {
   display: flex;
   justify-content: center;
   scrollbar-width: none;
+  min-width: 0;
 }
+
 .slide-thumbnails-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -825,6 +836,185 @@ kbd {
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 3px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN & ADAPTIVE BREAKPOINTS
+   ========================================================================== */
+
+/* 1. Laptops with shorter height (e.g., 768p, 720p screens) */
+@media (max-height: 760px) and (min-width: 861px) {
+  .presentation-top-bar {
+    height: 42px;
+    min-height: 42px;
+    padding: 0 18px;
+  }
+  .slide-controller-bar {
+    height: 48px;
+    min-height: 48px;
+    padding: 0 18px;
+  }
+  .presentation-canvas {
+    padding: 10px 20px 8px 20px;
+  }
+  .slide-header-bar {
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+  .slide-title-primary {
+    font-size: 1.35rem;
+  }
+  .slide-subtitle-desc {
+    font-size: 0.85rem;
+  }
+  .slide-callout-box,
+  .slide-learning-section,
+  .slide-usage-section,
+  .slide-labs-section {
+    padding: 8px 12px;
+    gap: 4px;
+  }
+  .learning-list li {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+  .terminal-code-body {
+    font-size: 0.76rem;
+    line-height: 1.48;
+    padding: 10px 14px;
+  }
+}
+
+/* 2. Tablet & Mid-width screens (861px - 1100px) */
+@media (max-width: 1100px) {
+  .presentation-top-bar {
+    padding: 0 16px;
+  }
+  .slide-controller-bar {
+    padding: 0 16px;
+  }
+  .presentation-canvas {
+    padding: 12px 18px 8px 18px;
+  }
+  .keyboard-hints-pill {
+    display: none; /* Free up space for thumbnail pills */
+  }
+  .slide-split-body {
+    gap: 14px;
+  }
+}
+
+/* 3. Mobile Screens & Portrait Tablets (< 860px) */
+@media (max-width: 860px) {
+  html, body {
+    overflow: hidden;
+  }
+
+  .presentation-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .presentation-top-bar {
+    height: 44px;
+    min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .day-jump-nav {
+    max-width: calc(100vw - 120px);
+  }
+
+  .btn-deck-tool span {
+    display: none; /* Icon-only on mobile */
+  }
+  .btn-deck-tool {
+    padding: 5px 8px;
+  }
+
+  #slideStageContainer {
+    flex: 1;
+    overflow-y: auto;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .presentation-canvas {
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 14px 20px 14px;
+    overflow: visible;
+  }
+
+  .slide-title-primary {
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+
+  .slide-subtitle-desc {
+    font-size: 0.85rem;
+  }
+
+  /* Stack vertically on mobile */
+  .slide-split-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: auto;
+    overflow: visible;
+  }
+
+  .slide-info-column {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .slide-code-column {
+    height: auto;
+    overflow: visible;
+  }
+
+  .code-terminal-card {
+    min-height: 280px;
+    max-height: 400px;
+  }
+
+  /* Slide Controller Dock on Mobile */
+  .slide-controller-bar {
+    height: 50px;
+    min-height: 50px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .btn-nav-slide {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .btn-nav-slide span {
+    display: none; /* Icon only on small screens for prev/next */
+  }
+
+  .progress-info-container {
+    gap: 6px;
+  }
+
+  .slide-counter-badge {
+    font-size: 0.75rem;
+  }
+
+  .slide-progress-track {
+    width: 50px;
+  }
+
+  .keyboard-hints-pill {
+    display: none;
+  }
 }
 
 /* ==========================================================================
