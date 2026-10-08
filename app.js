@@ -859,6 +859,30 @@ function setupEvents() {
       toggleFullscreen();
     }
   });
+
+  // ຮອງຮັບການປັດໜ້າຈໍ (Touch Swipe) ສຳລັບ Mobile & Tablet
+  let touchStartX = 0;
+  let touchStartY = 0;
+  window.addEventListener("touchstart", (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }
+  }, { passive: true });
+
+  window.addEventListener("touchend", (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      const diffX = e.changedTouches[0].screenX - touchStartX;
+      const diffY = e.changedTouches[0].screenY - touchStartY;
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+        if (diffX < 0) {
+          goToSlide(currentSlideIndex + 1); // ປັດຊ້າຍ -> ຖັດໄປ
+        } else {
+          goToSlide(currentSlideIndex - 1); // ປັດຂວາ -> ກ່ອນໜ້າ
+        }
+      }
+    }
+  }, { passive: true });
 }
 
 function escapeHtml(str) {
