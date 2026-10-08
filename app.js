@@ -13,7 +13,7 @@ const SLIDES_DATA = [
     day: "all",
     dayLabel: "ພາບລວມຫຼັກສູດ 3 ວັນ",
     number: "ພາບລວມ",
-    fileLabel: "curriculum_overview.py",
+    fileLabel: "unified_architecture_pipeline.py",
     title: "ແຜນຜັງ ແລະ ພາບລວມການຮຽນຮູ້ຫຼັກສູດ Python ຂັ້ນສູງ",
     subtitle: "ສະຫຼຸບການຮຽນຮູ້ຕະຫຼອດ 3 ວັນ: ມື້ທີ 1 (ໂມດູນ 1-2), ມື້ທີ 2 (ໂມດູນ 3-6), ແລະ ວັນສຸດທ້າຍ (ໂມດູນ 7-9)",
     overview: "ຫຼັກສູດນີ້ເນັ້ນໜັກການຍົກລະດັບຈາກການຂຽນໂຄ້ດພື້ນຖານ ໄປສູ່ວິສະວະກຳຊອບແວລະດັບມືອາຊີບ, ການຈັດການໜ່ວຍຄວາມຈຳຂັ້ນສູງ, ການປະມວນຜົນຫຼາຍວຽກພ້ອມກັນ ແລະ ການເຊື່ອມຕໍ່ລະບົບເຄືອຂ່າຍ.",
@@ -28,26 +28,55 @@ const SLIDES_DATA = [
       { code: "ມື້ທີ 2", name: "4 ໂມດູນ", desc: "Iterators, Generators, Closures & Functional Programming" },
       { code: "ວັນສຸດທ້າຍ", name: "3 ໂມດູນ", desc: "ກົນໄກໜ່ວຍຄວາມຈຳ, Concurrency & Network Sockets" }
     ],
-    codeSnippet: `# 3-Day Advanced Python Course Curriculum
-COURSE_SCHEDULE = {
-    "Day_1": [
-        "Module 01: Python in the Real World & Architecture",
-        "Module 02: Advanced Object-Oriented Programming (OOP)"
-    ],
-    "Day_2": [
-        "Module 03: Design with Iterator Protocol",
-        "Module 04: Design with Generator & Memory Pipelines",
-        "Module 05: Production Closures & Decorators",
-        "Module 06: Python Lambda & Functional Tools"
-    ],
-    "Day_3": [
-        "Module 07: Data & Memory Mechanics",
-        "Module 08: Concurrency, Threading & AsyncIO",
-        "Module 09: Network Programming & TCP Sockets"
-    ]
-}
+    codeSnippet: `"""
+Advanced Python 3-Day Engineering Pipeline
+Demonstrating real-world integration of topics from Day 1, Day 2, and Day 3
+"""
+import asyncio
+import time
+from typing import AsyncGenerator
 
-print("Total: 3 Days | 9 Core Modules | 28 Hands-on VLABs")`,
+# [Day 1] OOP & Invariants: Structured domain model with validation
+class Transaction:
+    __slots__ = ("tx_id", "amount", "status")  # [Day 3] Memory optimization
+    
+    def __init__(self, tx_id: str, amount: float):
+        if amount <= 0:
+            raise ValueError("Transaction amount must be strictly positive.")
+        self.tx_id = tx_id
+        self.amount = amount
+        self.status = "PENDING"
+
+# [Day 2] Production Decorator: Measures execution latency
+def trace_latency(func):
+    async def wrapper(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = await func(*args, **kwargs)
+        duration = time.perf_counter() - t0
+        print(f"[{func.__name__}] Latency: {duration * 1000:.2f}ms")
+        return result
+    return wrapper
+
+# [Day 2] Lazy Generator: Streams records with O(1) memory
+async def data_stream() -> AsyncGenerator[Transaction, None]:
+    for i in range(1, 4):
+        yield Transaction(f"TX-{i:04d}", i * 250.0)
+
+# [Day 3] Concurrency & Network: Asynchronous event loop dispatch
+@trace_latency
+async def process_record(tx: Transaction) -> str:
+    await asyncio.sleep(0.02)  # Simulates async network I/O
+    tx.status = "VERIFIED"
+    return f"{tx.tx_id} -> USD {tx.amount:,.2f} ({tx.status})"
+
+async def main():
+    # Asynchronously process streamed records concurrently
+    tasks = [process_record(tx) async for tx in data_stream()]
+    results = await asyncio.gather(*tasks)
+    print("Batch processing completed:", results)
+
+if __name__ == "__main__":
+    asyncio.run(main())`,
     takeaways: "ເຂົ້າໃຈເສັ້ນທາງການພັດທະນາຊອບແວຕັ້ງແຕ່ໂຄງສ້າງລະບົບ, ການຄວບຄຸມ Memory ຈົນຮອດລະບົບ Network."
   },
 
@@ -77,21 +106,35 @@ print("Total: 3 Days | 9 Core Modules | 28 Hands-on VLABs")`,
     codeSnippet: `from dataclasses import dataclass
 import logging
 
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger("order_service")
 
-# Domain model with invariant validation
+# 1. Domain Layer: Immutable entity with invariant validation
 @dataclass(frozen=True)
 class Order:
     order_id: str
+    customer_id: str
     amount: float
-    status: str
 
-def process_order(order: Order) -> bool:
-    """Service layer: executes business logic and logs events"""
-    logger.info("Processing order: %s", order.order_id)
-    if order.amount <= 0:
-        raise ValueError("Order amount must be greater than zero.")
-    return True`,
+# 2. Service Layer: Business logic with clear Error Boundary
+class OrderProcessingService:
+    def process(self, order: Order) -> bool:
+        logger.info("Initiating order processing for ID: %s", order.order_id)
+        if order.amount <= 0.0:
+            raise ValueError(f"Invalid order amount: {order.amount}. Must be > 0.")
+        
+        # Simulating business rule execution
+        logger.info("Order %s successfully validated and dispatched.", order.order_id)
+        return True
+
+# Example execution within error boundary
+if __name__ == "__main__":
+    service = OrderProcessingService()
+    try:
+        new_order = Order("ORD-9821", "CUST-404", 450.0)
+        service.process(new_order)
+    except ValueError as err:
+        logger.error("Domain boundary caught violation: %s", err)`,
     takeaways: "ເຂົ້າໃຈວິທີສ້າງໂຄງສ້າງລະບົບທີ່ມີມາດຕະຖານລະດັບມືອາຊີບຕັ້ງແຕ່ເລີ່ມຕົ້ນ."
   },
   {
@@ -116,24 +159,44 @@ def process_order(order: Order) -> bool:
       { code: "EXA-M02-2", name: "ສ້າງ Encapsulation", desc: "ປົກປ້ອງຂໍ້ມູນບັນຊີທະນາຄານ" },
       { code: "EXA-M02-3", name: "Polymorphism ຕົວຈິງ", desc: "ປະຍຸກໃຊ້ກັບລະບົບຊຳລະເງິນ" }
     ],
-    codeSnippet: `class BankAccount:
-    """Encapsulates account state and enforces invariants"""
+    codeSnippet: `class AccountHistory:
+    """Composition component: tracks transactions independently"""
+    def __init__(self):
+        self._entries = []
+
+    def record(self, action: str, amount: float) -> None:
+        self._entries.append((action, amount))
+
+    def __len__(self) -> int:
+        return len(self._entries)
+
+class BankAccount:
+    """Domain Aggregate: enforces invariants via encapsulation & dunder protocols"""
     def __init__(self, account_id: str, initial_balance: float = 0.0):
-        self._account_id = account_id
-        if initial_balance < 0:
+        if initial_balance < 0.0:
             raise ValueError("Initial balance cannot be negative.")
+        self._account_id = account_id
         self._balance = initial_balance
+        self._history = AccountHistory()  # Composition over inheritance
 
     @property
     def balance(self) -> float:
-        """Read-only balance property"""
+        """Read-only property protecting internal state"""
         return self._balance
 
     def deposit(self, amount: float) -> None:
-        """Enforces positive deposit invariant"""
-        if amount <= 0:
-            raise ValueError("Deposit amount must be positive.")
-        self._balance += amount`,
+        if amount <= 0.0:
+            raise ValueError("Deposit amount must be strictly positive.")
+        self._balance += amount
+        self._history.record("DEPOSIT", amount)
+
+    def __repr__(self) -> str:
+        return f"BankAccount(id={self._account_id!r}, balance={self._balance:.2f}, txs={len(self._history)})"
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, BankAccount):
+            return NotImplemented
+        return self._account_id == other._account_id`,
     takeaways: "ສາມາດອອກແບບ Class ທີ່ມີຄວາມປອດໄພຂອງຂໍ້ມູນ ແລະ ຫຼຸດຜ່ອນຂໍ້ຜິດພາດທາງທຸລະກິດ."
   },
 
@@ -161,21 +224,36 @@ def process_order(order: Order) -> bool:
       { code: "EXA-M03-1", name: "ສ້າງ Custom Iterator", desc: "implement __iter__ ແລະ __next__" },
       { code: "EXA-M03-2", name: "Streaming Big Data", desc: "ອ່ານໄຟລ໌ຂໍ້ມູນຂະໜາດໃຫຍ່ແບບ Stream" }
     ],
-    codeSnippet: `class TransactionStream:
-    """Custom Iterator: streams records one-by-one with O(1) memory"""
+    codeSnippet: `class BigDataStream:
+    """
+    Custom Iterator Protocol:
+    Processes millions of database records or log lines with O(1) space complexity.
+    """
     def __init__(self, data_source):
-        self.source = data_source
-        self.cursor = 0
+        self._source = data_source
+        self._index = 0
 
     def __iter__(self):
+        # An iterator must return itself from __iter__
         return self
 
     def __next__(self):
-        if self.cursor >= len(self.source):
+        if self._index >= len(self._source):
+            # Signals the termination of iteration
             raise StopIteration
-        item = self.source[self.cursor]
-        self.cursor += 1
-        return item`,
+        
+        record = self._source[self._index]
+        self._index += 1
+        return {"id": record["id"], "amount": record["val"] * 1.1}
+
+# Demonstration
+if __name__ == "__main__":
+    raw_data = [{"id": 1, "val": 100}, {"id": 2, "val": 250}, {"id": 3, "val": 400}]
+    stream = BigDataStream(raw_data)
+    
+    # Traverses one item at a time without loading entire array into RAM
+    for item in stream:
+        print(f"Streamed Record: {item}")`,
     takeaways: "ປ້ອງກັນບັນຫາ Out of Memory (RAM ເຕັມ) ເມື່ອເຮັດວຽກກັບຊຸດຂໍ້ມູນຂະໜາດໃຫຍ່."
   },
   {
@@ -198,17 +276,30 @@ def process_order(order: Order) -> bool:
     labs: [
       { code: "EXA-M04-1", name: "ສ້າງ Generator Pipeline", desc: "Lazy Evaluation & Data Filtering Pipeline" }
     ],
-    codeSnippet: `def read_large_logs(file_path: str):
-    """Generator: yields log lines lazily without buffering full file"""
-    with open(file_path, "r", encoding="utf-8") as f:
-        for line in f:
-            if "ERROR" in line:
-                yield line.strip()
+    codeSnippet: `def read_log_records(log_path: str):
+    """Generator: lazily yields lines one by one without reading full file"""
+    with open(log_path, "r", encoding="utf-8") as file:
+        for line in file:
+            yield line.strip()
 
-# Composable memory-efficient pipeline (O(1) RAM):
-# raw_logs = read_large_logs("server.log")
-# parsed = (parse_log(line) for line in raw_logs)
-# critical = (record for record in parsed if record["severity"] == "CRITICAL")`,
+def filter_critical_errors(log_lines):
+    """Pipeline Stage 1: filters lines matching specific severity"""
+    for line in log_lines:
+        if "CRITICAL" in line or "FATAL" in line:
+            yield line
+
+def parse_error_payload(filtered_lines):
+    """Pipeline Stage 2: extracts payload from log stream"""
+    for line in filtered_lines:
+        timestamp, _, message = line.partition(" - ")
+        yield {"timestamp": timestamp, "message": message}
+
+# Composing Unix-like Generator Pipeline: O(1) RAM usage
+# lines = read_log_records("production.log")
+# errors = filter_critical_errors(lines)
+# alerts = parse_error_payload(errors)
+# for alert in alerts:
+#     send_pager_duty(alert)`,
     takeaways: "ສ້າງ Data Pipeline ທີ່ໄວ ແລະ ໃຊ້ Memory ຕ່ຳທີ່ສຸດດ້ວຍຫຼັກການ Lazy Evaluation."
   },
   {
@@ -235,21 +326,32 @@ def process_order(order: Order) -> bool:
     codeSnippet: `import functools
 import time
 
-def timing_decorator(func):
-    """Production Decorator: measures latency and preserves metadata"""
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        result = func(*args, **kwargs)
-        elapsed = time.perf_counter() - start
-        print(f"[{func.__name__}] Execution latency: {elapsed:.4f}s")
-        return result
-    return wrapper
+def resilient_retry(max_attempts: int = 3, delay_sec: float = 0.5):
+    """Production Parameterized Decorator: retries failed network calls"""
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            attempts = 0
+            while attempts < max_attempts:
+                try:
+                    start = time.perf_counter()
+                    result = func(*args, **kwargs)
+                    elapsed = time.perf_counter() - start
+                    print(f"[{func.__name__}] Executed in {elapsed:.4f}s")
+                    return result
+                except Exception as err:
+                    attempts += 1
+                    print(f"[{func.__name__}] Attempt {attempts} failed: {err}")
+                    if attempts >= max_attempts:
+                        raise
+                    time.sleep(delay_sec)
+        return wrapper
+    return decorator
 
-@timing_decorator
-def query_database():
-    time.sleep(0.1)
-    return "Query executed successfully"`,
+@resilient_retry(max_attempts=3, delay_sec=0.1)
+def fetch_user_profile(user_id: str) -> dict:
+    # Simulates network query
+    return {"user_id": user_id, "status": "ACTIVE"}`,
     takeaways: "ສາມາດຂຽນ Decorators ທີ່ສະອາດ, ໃຊ້ຊ້ຳໄດ້ ແລະ ຍົກລະດັບຄຸນນະພາບລະບົບ."
   },
   {
@@ -274,18 +376,27 @@ def query_database():
     ],
     codeSnippet: `from functools import reduce
 
-users = [
-    {"name": "Alice", "balance": 150000.0, "active": True},
-    {"name": "Bob", "balance": 40000.0, "active": False},
-    {"name": "Charlie", "balance": 320000.0, "active": True}
+customers = [
+    {"name": "Alice", "balance": 150000.0, "vip": True},
+    {"name": "Bob", "balance": 45000.0, "vip": False},
+    {"name": "Charlie", "balance": 320000.0, "vip": True},
+    {"name": "Diana", "balance": 98000.0, "vip": True}
 ]
 
-# Filter active accounts and map balances
-active_balances = list(map(lambda u: u["balance"], filter(lambda u: u["active"], users)))
+# 1. Custom sorting using inline lambda key
+sorted_by_balance = sorted(customers, key=lambda c: c["balance"], reverse=True)
 
-# Aggregate total balance using reduce
-total_sum = reduce(lambda acc, val: acc + val, active_balances, 0.0)
-print(f"Total active balance: {total_sum:,.2f} USD")`,
+# 2. Functional Filter: select VIP customers
+vip_customers = filter(lambda c: c["vip"], customers)
+
+# 3. Functional Map: extract account balances
+vip_balances = map(lambda c: c["balance"], vip_customers)
+
+# 4. Functional Reduce: compute aggregate sum without side-effects
+total_vip_holdings = reduce(lambda acc, b: acc + b, vip_balances, 0.0)
+
+print(f"Total VIP Holdings: USD {total_vip_holdings:,.2f}")
+print("Top account:", sorted_by_balance[0]["name"])`,
     takeaways: "ຂຽນໂຄ້ດປະມວນຜົນຂໍ້ມູນທີ່ກະທັດຮັດ, ຊັດເຈນ, ແລະ ຫຼຸດຜ່ອນ Side Effects."
   },
 
@@ -318,20 +429,31 @@ print(f"Total active balance: {total_sum:,.2f} USD")`,
     ],
     codeSnippet: `import copy
 
-class OptimizedPoint:
-    # __slots__ eliminates instance __dict__, saving significant RAM
+class StandardPoint:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+class MemoryOptimizedPoint:
+    # __slots__ eliminates dynamic __dict__, slashing memory by ~60%
     __slots__ = ("x", "y")
     def __init__(self, x: float, y: float):
         self.x = x
         self.y = y
 
-# Deep copy prevents unexpected mutation across shared references
-original_records = [{"id": 101, "items": ["A", "B"]}]
-safe_clone = copy.deepcopy(original_records)
-safe_clone[0]["items"].append("C")
+# Memory comparison
+p1 = StandardPoint(10.0, 20.0)
+p2 = MemoryOptimizedPoint(10.0, 20.0)
+print(f"Has __dict__: Standard={hasattr(p1, '__dict__')}, Optimized={hasattr(p2, '__dict__')}")
 
-# original_records remains unchanged
-assert len(original_records[0]["items"]) == 2`,
+# Safe Data Cloning: preventing unexpected mutation in ETL pipelines
+nested_dataset = [{"batch_id": "B-01", "records": [10, 20, 30]}]
+deep_cloned = copy.deepcopy(nested_dataset)
+
+deep_cloned[0]["records"].append(40)
+# Original remains pristine
+assert len(nested_dataset[0]["records"]) == 3
+print("Deep copy preserved source immutability successfully.")`,
     takeaways: "ເຂົ້າໃຈລຶກເຊິ່ງເຖິງກົນໄກ Memory ພາຍໃນ Python ເພື່ອປ້ອງກັນ Memory Leak ແລະ ຂຽນລະບົບ ETL ທີ່ປອດໄພ."
   },
   {
@@ -359,22 +481,27 @@ assert len(original_records[0]["items"]) == 2`,
       { code: "EXA-M08-4", name: "Concurrency ໃນວຽກຕົວຈິງ", desc: "ດຶງຂໍ້ມູນຈາກຫຼາຍ APIs ພ້ອມກັນ" }
     ],
     codeSnippet: `import threading
+import time
 
-counter = 0
-lock = threading.Lock()  # Mutex protects shared state
+shared_inventory = 100
+inventory_lock = threading.Lock()  # Mutex Lock protects critical section
 
-def safe_increment():
-    global counter
-    for _ in range(10000):
-        with lock:  # Protects critical section
-            counter += 1
+def purchase_item(worker_id: int):
+    global shared_inventory
+    for _ in range(20):
+        time.sleep(0.001)  # Simulates I/O latency
+        with inventory_lock:  # Enforces mutual exclusion
+            if shared_inventory > 0:
+                shared_inventory -= 1
 
-# Launch 5 concurrent worker threads
-threads = [threading.Thread(target=safe_increment) for _ in range(5)]
+# Launch 5 concurrent threads competing for shared inventory
+threads = [threading.Thread(target=purchase_item, args=(i,)) for i in range(5)]
 for t in threads: t.start()
 for t in threads: t.join()
 
-print(f"Final thread-safe count: {counter}")`,
+# Without lock: race condition leads to corrupted count
+print(f"Inventory remaining (Guaranteed 100% Thread-safe): {shared_inventory}")
+assert shared_inventory == 0`,
     takeaways: "ສາມາດຄວບຄຸມການເຮັດວຽກພ້ອມກັນໄດ້ຢ່າງຖືກຕ້ອງ, ປ້ອງກັນ Data Collision, ແລະ ເພີ່ມຄວາມໄວໃຫ້ລະບົບ."
   },
   {
@@ -404,19 +531,26 @@ print(f"Final thread-safe count: {counter}")`,
     codeSnippet: `import socket
 import time
 
-def resilient_connect(host: str, port: int, max_retries: int = 3):
-    """Connects TCP socket with timeout and exponential backoff retry"""
+def resilient_tcp_client(host: str, port: int, max_retries: int = 3) -> socket.socket:
+    """
+    Production Socket Client:
+    Implements connection timeouts and exponential backoff retry pattern.
+    """
     for attempt in range(1, max_retries + 1):
         try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(5.0)  # Prevents hanging connections
-            s.connect((host, port))
-            return s
-        except (socket.timeout, ConnectionRefusedError) as err:
-            wait_time = 2 ** attempt  # Exponential backoff (2s, 4s, 8s)
-            print(f"Connection failed ({err}), retrying in {wait_time}s...")
-            time.sleep(wait_time)
-    raise ConnectionError("Exceeded maximum connection attempts.")`,
+            print(f"[TCP] Connecting to {host}:{port} (Attempt {attempt}/{max_retries})...")
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(3.0)  # 3-second connect timeout
+            sock.connect((host, port))
+            print(f"[TCP] Connection established to {host}:{port}")
+            return sock
+        except (socket.timeout, ConnectionRefusedError, OSError) as error:
+            sock.close()
+            backoff_delay = 2 ** attempt  # Exponential backoff (2s, 4s, 8s)
+            print(f"[TCP WARNING] Connection failed: {error}. Retrying in {backoff_delay}s...")
+            time.sleep(backoff_delay)
+
+    raise ConnectionError(f"Could not connect to {host}:{port} after {max_retries} attempts.")`,
     takeaways: "ເຂົ້າໃຈລະບົບເຄືອຂ່າຍຕັ້ງແຕ່ລະດັບ Socket ຈົນຮອດ REST API ພ້ອມທັງວິທີຮັບມືກັບ Network Failure."
   }
 ];
