@@ -285,7 +285,7 @@ active_balances = list(map(lambda u: u["balance"], filter(lambda u: u["active"],
 
 # Aggregate total balance using reduce
 total_sum = reduce(lambda acc, val: acc + val, active_balances, 0.0)
-print(f"Total active balance: \\${total_sum:,.2f}")`,
+print(f"Total active balance: {total_sum:,.2f} USD")`,
     takeaways: "ຂຽນໂຄ້ດປະມວນຜົນຂໍ້ມູນທີ່ກະທັດຮັດ, ຊັດເຈນ, ແລະ ຫຼຸດຜ່ອນ Side Effects."
   },
 
