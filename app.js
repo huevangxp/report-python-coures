@@ -1,6 +1,6 @@
 /**
  * ບົດລາຍງານຫຼັກສູດ Python ຂັ້ນສູງ (Advanced Python Engineering)
- * ອອກແບບເປັນສະໄລ້ບັນຍາຍ 100% ພາສາລາວ
+ * ອອກແບບເປັນສະໄລ້ບັນຍາຍ 100% ພາສາລາວ (ຄຳອະທິບາຍພາສາລາວ, ໂຄ້ດພາສາອັງກິດ)
  * ດຶງຂໍ້ມູນຈາກ: https://www.laoaitechnology.shop/
  */
 
@@ -13,6 +13,7 @@ const SLIDES_DATA = [
     day: "all",
     dayLabel: "ພາບລວມຫຼັກສູດ 3 ວັນ",
     number: "ພາບລວມ",
+    fileLabel: "curriculum_overview.py",
     title: "ແຜນຜັງ ແລະ ພາບລວມການຮຽນຮູ້ຫຼັກສູດ Python ຂັ້ນສູງ",
     subtitle: "ສະຫຼຸບການຮຽນຮູ້ຕະຫຼອດ 3 ວັນ: ມື້ທີ 1 (ໂມດູນ 1-2), ມື້ທີ 2 (ໂມດູນ 3-6), ແລະ ວັນສຸດທ້າຍ (ໂມດູນ 7-9)",
     overview: "ຫຼັກສູດນີ້ເນັ້ນໜັກການຍົກລະດັບຈາກການຂຽນໂຄ້ດພື້ນຖານ ໄປສູ່ວິສະວະກຳຊອບແວລະດັບມືອາຊີບ, ການຈັດການໜ່ວຍຄວາມຈຳຂັ້ນສູງ, ການປະມວນຜົນຫຼາຍວຽກພ້ອມກັນ ແລະ ການເຊື່ອມຕໍ່ລະບົບເຄືອຂ່າຍ.",
@@ -27,26 +28,26 @@ const SLIDES_DATA = [
       { code: "ມື້ທີ 2", name: "4 ໂມດູນ", desc: "Iterators, Generators, Closures & Functional Programming" },
       { code: "ວັນສຸດທ້າຍ", name: "3 ໂມດູນ", desc: "ກົນໄກໜ່ວຍຄວາມຈຳ, Concurrency & Network Sockets" }
     ],
-    codeSnippet: `# ແຜນຜັງການຮຽນຮູ້ຫຼັກສູດ Python ຂັ້ນສູງ ຕະຫຼອດ 3 ວັນ
+    codeSnippet: `# 3-Day Advanced Python Course Curriculum
 COURSE_SCHEDULE = {
-    "ມື້ທີ_1": [
-        "ໂມດູນ 01: Python ໃນໂລກຕົວຈິງ & ສະຖາປັດຕະຍະກຳ",
-        "ໂມດູນ 02: ການຂຽນໂປຣແກຣມແບບວັດຖຸຂັ້ນສູງ (OOP)"
+    "Day_1": [
+        "Module 01: Python in the Real World & Architecture",
+        "Module 02: Advanced Object-Oriented Programming (OOP)"
     ],
-    "ມື້ທີ_2": [
-        "ໂມດູນ 03: ການອອກແບບດ້ວຍ Iterator Protocol",
-        "ໂມດູນ 04: Generator & ທໍ່ລຳລຽງຂໍ້ມູນ (Data Pipelines)",
-        "ໂມດູນ 05: Closure & Decorators ລະດັບໃຊ້ງານຈິງ",
-        "ໂມດູນ 06: Lambda & ເຄື່ອງມື Functional Programming"
+    "Day_2": [
+        "Module 03: Design with Iterator Protocol",
+        "Module 04: Design with Generator & Memory Pipelines",
+        "Module 05: Production Closures & Decorators",
+        "Module 06: Python Lambda & Functional Tools"
     ],
-    "ວັນສຸດທ້າຍ": [
-        "ໂມດູນ 07: ໂຄງສ້າງໜ່ວຍຄວາມຈຳ & ກົນໄກຈັດການຂໍ້ມູນ",
-        "ໂມດູນ 08: ການປະມວນຜົນພ້ອມກັນ (Concurrency & AsyncIO)",
-        "ໂມດູນ 09: ການຂຽນໂປຣແກຣມເຄືອຂ່າຍ & Network Sockets"
+    "Day_3": [
+        "Module 07: Data & Memory Mechanics",
+        "Module 08: Concurrency, Threading & AsyncIO",
+        "Module 09: Network Programming & TCP Sockets"
     ]
 }
 
-print("ລວມທັງໝົດ: 3 ວັນ · 9 ໂມດູນຫຼັກ · 28 ຫ້ອງທົດລອງພາກປະຕິບັດ VLAB")`,
+print("Total: 3 Days | 9 Core Modules | 28 Hands-on VLABs")`,
     takeaways: "ເຂົ້າໃຈເສັ້ນທາງການພັດທະນາຊອບແວຕັ້ງແຕ່ໂຄງສ້າງລະບົບ, ການຄວບຄຸມ Memory ຈົນຮອດລະບົບ Network."
   },
 
@@ -58,6 +59,7 @@ print("ລວມທັງໝົດ: 3 ວັນ · 9 ໂມດູນຫຼັກ
     day: "day1",
     dayLabel: "ມື້ທີ 1 (ຮຽນ 1 ຫາ 2)",
     number: "01",
+    fileLabel: "module_01_architecture.py",
     title: "ໂມດູນ 01: Python ໃນໂລກການເຮັດວຽກຕົວຈິງ & ສະຖາປັດຕະຍະກຳ",
     subtitle: "Python ໃນໂລກຕົວຈິງ — ຈາກໂຄ້ດທີ່ແລ່ນໄດ້ ສູ່ລະບົບທີ່ໝັ້ນຄົງ ແລະ ຮອງຮັບການຂະຫຍາຍຕົວ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງການປ່ຽນຜ່ານຈາກການຂຽນສະຄຣິບທຳມະດາ ໄປສູ່ການອອກແບບສະຖາປັດຕະຍະກຳຊອບແວທີ່ຮອງຮັບການຂະຫຍາຍຕົວ ແລະ ມາດຕະຖານຄຸນນະພາບລະບົບ 6 ຫຼັກການ.",
@@ -77,18 +79,18 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# ກວດສອບຂໍ້ມູນຜ່ານ Data Class ທີ່ປອດໄພ
+# Domain model with invariant validation
 @dataclass(frozen=True)
 class Order:
     order_id: str
-    total: float
+    amount: float
     status: str
 
 def process_order(order: Order) -> bool:
-    # ແຍກຂອບເຂດການເຮັດວຽກ ແລະ ບັນທຶກ Log ຢ່າງເປັນລະບົບ
-    logger.info("ກຳລັງປະມວນຜົນລາຍການ: %s", order.order_id)
-    if order.total <= 0:
-        raise ValueError("ຍອດເງິນຕ້ອງຫຼາຍກວ່າ 0 ສະເໝີ")
+    """Service layer: executes business logic and logs events"""
+    logger.info("Processing order: %s", order.order_id)
+    if order.amount <= 0:
+        raise ValueError("Order amount must be greater than zero.")
     return True`,
     takeaways: "ເຂົ້າໃຈວິທີສ້າງໂຄງສ້າງລະບົບທີ່ມີມາດຕະຖານລະດັບມືອາຊີບຕັ້ງແຕ່ເລີ່ມຕົ້ນ."
   },
@@ -97,6 +99,7 @@ def process_order(order: Order) -> bool:
     day: "day1",
     dayLabel: "ມື້ທີ 1 (ຮຽນ 1 ຫາ 2)",
     number: "02",
+    fileLabel: "module_02_oop.py",
     title: "ໂມດູນ 02: ການຂຽນໂປຣແກຣມແບບວັດຖຸຂັ້ນສູງ (OOP in Python)",
     subtitle: "ການຂຽນໂປຣແກຣມແບບວັດຖຸ — Dunder Protocols, ກົດລະບຽບ Invariants ແລະ ການປະກອບວັດຖຸ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງຫຼັກການອອກແບບ Class ຢ່າງມືອາຊີບ, Dunder Magic Methods, ການປົກປ້ອງຂໍ້ມູນດ້ວຍ Invariants ແລະ ຫຼັກການປະກອບວັດຖຸ (Composition over Inheritance).",
@@ -114,21 +117,22 @@ def process_order(order: Order) -> bool:
       { code: "EXA-M02-3", name: "Polymorphism ຕົວຈິງ", desc: "ປະຍຸກໃຊ້ກັບລະບົບຊຳລະເງິນ" }
     ],
     codeSnippet: `class BankAccount:
+    """Encapsulates account state and enforces invariants"""
     def __init__(self, account_id: str, initial_balance: float = 0.0):
         self._account_id = account_id
         if initial_balance < 0:
-            raise ValueError("ຍອດເງິນເລີ່ມຕົ້ນບໍ່ສາມາດຕິດລົບໄດ້")
+            raise ValueError("Initial balance cannot be negative.")
         self._balance = initial_balance
 
     @property
     def balance(self) -> float:
-        """ອ່ານຄ່າຍອດເງິນໄດ້ ແຕ່ຫ້າມແກ້ໄຂໂດຍກົງ"""
+        """Read-only balance property"""
         return self._balance
 
     def deposit(self, amount: float) -> None:
-        """ກວດສອບເງື່ອນໄຂກ່ອນເພີ່ມຍອດເງິນ (Encapsulation)"""
+        """Enforces positive deposit invariant"""
         if amount <= 0:
-            raise ValueError("ຈຳນວນເງິນຝາກຕ້ອງຫຼາຍກວ່າ 0")
+            raise ValueError("Deposit amount must be positive.")
         self._balance += amount`,
     takeaways: "ສາມາດອອກແບບ Class ທີ່ມີຄວາມປອດໄພຂອງຂໍ້ມູນ ແລະ ຫຼຸດຜ່ອນຂໍ້ຜິດພາດທາງທຸລະກິດ."
   },
@@ -141,6 +145,7 @@ def process_order(order: Order) -> bool:
     day: "day2",
     dayLabel: "ມື້ທີ 2 (ຮຽນ 3 ຫາ 6)",
     number: "03",
+    fileLabel: "module_03_iterator.py",
     title: "ໂມດູນ 03: ການອອກແບບດ້ວຍ Iterator Protocol",
     subtitle: "ການອອກແບບດ້ວຍ Iterator — ການທ່ອງຂໍ້ມູນແບບສາຍທານທີ່ປະຢັດໜ່ວຍຄວາມຈຳສູງສຸດ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງກົນໄກພາຍໃນຂອງ Iterator Protocol, ຄວາມແຕກຕ່າງລະຫວ່າງ Iterable vs Iterator ແລະ ການປະມວນຜົນຂໍ້ມູນມະຫາສານໂດຍບໍ່ໃຫ້ Memory ເຕັມ.",
@@ -157,7 +162,7 @@ def process_order(order: Order) -> bool:
       { code: "EXA-M03-2", name: "Streaming Big Data", desc: "ອ່ານໄຟລ໌ຂໍ້ມູນຂະໜາດໃຫຍ່ແບບ Stream" }
     ],
     codeSnippet: `class TransactionStream:
-    """Iterator ສຳລັບອ່ານທຸລະກຳເທື່ອລະລາຍການ ໂດຍບໍ່ກິນ RAM"""
+    """Custom Iterator: streams records one-by-one with O(1) memory"""
     def __init__(self, data_source):
         self.source = data_source
         self.cursor = 0
@@ -167,7 +172,7 @@ def process_order(order: Order) -> bool:
 
     def __next__(self):
         if self.cursor >= len(self.source):
-            raise StopIteration  # ຈົບການທ່ອງຂໍ້ມູນ
+            raise StopIteration
         item = self.source[self.cursor]
         self.cursor += 1
         return item`,
@@ -178,6 +183,7 @@ def process_order(order: Order) -> bool:
     day: "day2",
     dayLabel: "ມື້ທີ 2 (ຮຽນ 3 ຫາ 6)",
     number: "04",
+    fileLabel: "module_04_generator.py",
     title: "ໂມດູນ 04: ການອອກແບບດ້ວຍ Generator & ທໍ່ລຳລຽງຂໍ້ມູນ",
     subtitle: "ການອອກແບບດ້ວຍ Generator — ຄຳສັ່ງ Yield, ການປະມວນຜົນເມື່ອຮ້ອງຂໍ ແລະ ທໍ່ລຳລຽງຂໍ້ມູນ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງ Generator Functions ດ້ວຍຄຳສັ່ງ yield, ຫຼັກການ Lazy Evaluation (ຄຳນວນເມື່ອຕ້ອງການ) ແລະ ການຕໍ່ທໍ່ລຳລຽງຂໍ້ມູນ (Pipelines) ແບບຕໍ່ເນື່ອງ.",
@@ -192,17 +198,17 @@ def process_order(order: Order) -> bool:
     labs: [
       { code: "EXA-M04-1", name: "ສ້າງ Generator Pipeline", desc: "Lazy Evaluation & Data Filtering Pipeline" }
     ],
-    codeSnippet: `def read_large_logs(file_path):
-    """ອ່ານໄຟລ໌ເທື່ອລະແຖວດ້ວຍ yield (Lazy Evaluation)"""
-    with open(file_path, 'r', encoding='utf-8') as f:
+    codeSnippet: `def read_large_logs(file_path: str):
+    """Generator: yields log lines lazily without buffering full file"""
+    with open(file_path, "r", encoding="utf-8") as f:
         for line in f:
             if "ERROR" in line:
                 yield line.strip()
 
-# ການຕໍ່ທໍ່ Generator Pipeline ທີ່ໃຊ້ Memory O(1):
-# logs = read_large_logs("server.log")
-# parsed = (parse_log(line) for line in logs)
-# alerts = (r for r in parsed if r["severity"] == "CRITICAL")`,
+# Composable memory-efficient pipeline (O(1) RAM):
+# raw_logs = read_large_logs("server.log")
+# parsed = (parse_log(line) for line in raw_logs)
+# critical = (record for record in parsed if record["severity"] == "CRITICAL")`,
     takeaways: "ສ້າງ Data Pipeline ທີ່ໄວ ແລະ ໃຊ້ Memory ຕ່ຳທີ່ສຸດດ້ວຍຫຼັກການ Lazy Evaluation."
   },
   {
@@ -210,6 +216,7 @@ def process_order(order: Order) -> bool:
     day: "day2",
     dayLabel: "ມື້ທີ 2 (ຮຽນ 3 ຫາ 6)",
     number: "05",
+    fileLabel: "module_05_decorator.py",
     title: "ໂມດູນ 05: Closure & Decorators ລະດັບໃຊ້ງານຈິງ",
     subtitle: "Closure & Decorator — ຟັງຊັນຂັ້ນສູງ, ການຈື່ຈຳຂອບເຂດຕົວປ່ຽນ ແລະ ຮູບແບບ Decorators",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງ First-Class Functions, Lexical Scope, Closure (Scope Capture) ແລະ ການສ້າງ Decorators ມາດຕະຖານສຳລັບວັດເວລາ, Logging, Auth ແລະ Retry.",
@@ -229,20 +236,20 @@ def process_order(order: Order) -> bool:
 import time
 
 def timing_decorator(func):
-    """Decorator ສຳລັບວັດແທກເວລາເຮັດວຽກຂອງ Function"""
+    """Production Decorator: measures latency and preserves metadata"""
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         start = time.perf_counter()
         result = func(*args, **kwargs)
-        duration = time.perf_counter() - start
-        print(f"[{func.__name__}] ໃຊ້ເວລາ: {duration:.4f} ວິນາທີ")
+        elapsed = time.perf_counter() - start
+        print(f"[{func.__name__}] Execution latency: {elapsed:.4f}s")
         return result
     return wrapper
 
 @timing_decorator
 def query_database():
     time.sleep(0.1)
-    return "ສຳເລັດ"`,
+    return "Query executed successfully"`,
     takeaways: "ສາມາດຂຽນ Decorators ທີ່ສະອາດ, ໃຊ້ຊ້ຳໄດ້ ແລະ ຍົກລະດັບຄຸນນະພາບລະບົບ."
   },
   {
@@ -250,12 +257,13 @@ def query_database():
     day: "day2",
     dayLabel: "ມື້ທີ 2 (ຮຽນ 3 ຫາ 6)",
     number: "06",
+    fileLabel: "module_06_functional.py",
     title: "ໂມດູນ 06: Python Lambda & ເຄື່ອງມື Functional Programming",
     subtitle: "Lambda & Functional Tools — ຟັງຊັນບໍ່ມີຊື່, ການແປງ-ຄັດກອງຂໍ້ມູນ ແລະ ຟັງຊັນບໍລິສຸດ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງການຂຽນໂຄ້ດແບບ Functional Programming, Anonymous Functions (Lambda), map/filter/reduce, ແລະ ຫຼັກການ Pure Functions ທີ່ບໍ່ມີ Side Effects.",
     whatWasLearned: [
-      "Anonymous Functions (Lambda): Syntax `lambda args: expr` ພາຍໃຕ້ຫຼັກການ 'ຟັງຊັນສັ້ນ, ຈຸດປະສົງຊັດເຈນ'",
-      "ຂໍ້ຄວນລະວັງ: ເມື່ອໃດຄວນໃຊ້ Lambda (Inline key functions) ແລະ ເມື່ອໃດຄວນໃຊ້ `def` ປົກກະຕິເພື່ອຄວາມອ່ານງ່າຍ",
+      "Anonymous Functions (Lambda): Syntax \`lambda args: expr\` ພາຍໃຕ້ຫຼັກການ 'ຟັງຊັນສັ້ນ, ຈຸດປະສົງຊັດເຈນ'",
+      "ຂໍ້ຄວນລະວັງ: ເມື່ອໃດຄວນໃຊ້ Lambda (Inline key functions) ແລະ ເມື່ອໃດຄວນໃຊ້ \`def\` ປົກກະຕິເພື່ອຄວາມອ່ານງ່າຍ",
       "ເຄື່ອງມື Functional ມາດຕະຖານ: map() (ແປງຄ່າ), filter() (ຄັດກອງຄ່າ), functools.reduce() (ສະສົມລວບລວມຄ່າ)",
       "Custom Sorting: ການໃຊ້ Lambda ຮ່ວມກັບ sorted(), min(), max() ໂດຍໃຊ້ Key parameter",
       "ຫຼັກການ Pure Functions ແລະ Immutability: Function ທີ່ໃຫ້ຜົນລັບເດີມສະເໝີ ແລະ ບໍ່ປ່ຽນແປງ State ພາຍນອກ"
@@ -267,17 +275,17 @@ def query_database():
     codeSnippet: `from functools import reduce
 
 users = [
-    {"name": "ສົມສັກ", "balance": 150000.0, "active": True},
-    {"name": "ມະນີ", "balance": 40000.0, "active": False},
-    {"name": "ບຸນມີ", "balance": 320000.0, "active": True}
+    {"name": "Alice", "balance": 150000.0, "active": True},
+    {"name": "Bob", "balance": 40000.0, "active": False},
+    {"name": "Charlie", "balance": 320000.0, "active": True}
 ]
 
-# ຄັດກອງສະເພາະຜູ້ໃຊ້ທີ່ active ແລະ ດຶງຍອດເງິນ
+# Filter active accounts and map balances
 active_balances = list(map(lambda u: u["balance"], filter(lambda u: u["active"], users)))
 
-# ລວມຍອດເງິນທັງໝົດດ້ວຍ reduce
-total_sum = reduce(lambda acc, b: acc + b, active_balances, 0.0)
-print(f"ຍອດລວມ: {total_sum:,.2f} ກີບ")`,
+# Aggregate total balance using reduce
+total_sum = reduce(lambda acc, val: acc + val, active_balances, 0.0)
+print(f"Total active balance: ${total_sum:,.2f}")`,
     takeaways: "ຂຽນໂຄ້ດປະມວນຜົນຂໍ້ມູນທີ່ກະທັດຮັດ, ຊັດເຈນ, ແລະ ຫຼຸດຜ່ອນ Side Effects."
   },
 
@@ -289,12 +297,13 @@ print(f"ຍອດລວມ: {total_sum:,.2f} ກີບ")`,
     day: "day3",
     dayLabel: "ວັນສຸດທ້າຍ (ຮຽນ 7 ຫາ 9)",
     number: "07",
+    fileLabel: "module_07_memory.py",
     title: "ໂມດູນ 07: ໂຄງສ້າງໜ່ວຍຄວາມຈຳ & ກົນໄກການຈັດການຂໍ້ມູນ",
     subtitle: "ກົນໄກໜ່ວຍຄວາມຈຳ ແລະ ຂໍ້ມູນ — ການອ້າງອີງວັດຖຸ, ຄວາມປ່ຽນແປງໄດ້ ແລະ ທໍ່ລຳລຽງຂໍ້ມູນ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງໂຄງສ້າງ Memory ພາຍໃນຂອງ Python, Object References, Mutability, Garbage Collection, ພ້ອມທັງ Data Pipelines ເຊື່ອມຕໍ່ Excel, SQL ແລະ JSON.",
     whatWasLearned: [
       "ໂຄງສ້າງໜ່ວຍຄວາມຈຳ Python: ຄວາມເຂົ້າໃຈກ່ຽວກັບ Object References, Memory Addresses ແລະ 'Everything is an Object'",
-      "Identity vs Equality: ຄວາມຕ່າງລະຫວ່າງ `is` (ກວດ Memory Address) ແລະ `==` (ກວດຄ່າ Value)",
+      "Identity vs Equality: ຄວາມຕ່າງລະຫວ່າງ \`is\` (ກວດ Memory Address) ແລະ \`==\` (ກວດຄ່າ Value)",
       "Mutable vs Immutable: ພຶດຕິກຳຂອງ List, Dict, Set ທຽບກັບ Tuple, Str, Int ເມື່ອຖືກສົ່ງເຂົ້າ Function",
       "Shallow Copy vs Deep Copy: ການໃຊ້ copy.copy() ແລະ copy.deepcopy() ເພື່ອປ້ອງກັນ Unexpected Mutation",
       "Garbage Collection & Reference Counting, ການໃຊ້ __slots__ ເພື່ອຫຼຸດຜ່ອນ Memory ຂອງ Class Instances",
@@ -310,18 +319,19 @@ print(f"ຍອດລວມ: {total_sum:,.2f} ກີບ")`,
     codeSnippet: `import copy
 
 class OptimizedPoint:
-    # __slots__ ຊ່ວຍປະຢັດ Memory ຢ່າງຫຼວງຫຼາຍ ໂດຍການຕັດ __dict__ ອອກ
-    __slots__ = ('x', 'y')
-    def __init__(self, x, y):
+    # __slots__ eliminates instance __dict__, saving significant RAM
+    __slots__ = ("x", "y")
+    def __init__(self, x: float, y: float):
         self.x = x
         self.y = y
 
-# ປ້ອງກັນການປ່ຽນແປງຂໍ້ມູນແບບບໍ່ຕັ້ງໃຈດ້ວຍ Deep Copy
-original_data = [{"id": 101, "items": ["A", "B"]}]
-safe_clone = copy.deepcopy(original_data)
+# Deep copy prevents unexpected mutation across shared references
+original_records = [{"id": 101, "items": ["A", "B"]}]
+safe_clone = copy.deepcopy(original_records)
 safe_clone[0]["items"].append("C")
 
-# original_data ຈະຍັງຄົງປອດໄພ ບໍ່ຖືກປ່ຽນແປງ`,
+# original_records remains unchanged
+assert len(original_records[0]["items"]) == 2`,
     takeaways: "ເຂົ້າໃຈລຶກເຊິ່ງເຖິງກົນໄກ Memory ພາຍໃນ Python ເພື່ອປ້ອງກັນ Memory Leak ແລະ ຂຽນລະບົບ ETL ທີ່ປອດໄພ."
   },
   {
@@ -329,6 +339,7 @@ safe_clone[0]["items"].append("C")
     day: "day3",
     dayLabel: "ວັນສຸດທ້າຍ (ຮຽນ 7 ຫາ 9)",
     number: "08",
+    fileLabel: "module_08_concurrency.py",
     title: "ໂມດູນ 08: ການປະມວນຜົນພ້ອມກັນ (Concurrency, Threading & AsyncIO)",
     subtitle: "ການເຮັດວຽກພ້ອມກັນ — Multi-threading, GIL, ການປ້ອງກັນຂໍ້ມູນຕຳກັນ ແລະ AsyncIO",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງການຈັດການ Concurrency vs Parallelism, ການແກ້ໄຂບັນຫາ I/O-bound vs CPU-bound, Threading, Race Conditions, Locks, ແລະ AsyncIO Event Loop.",
@@ -350,20 +361,20 @@ safe_clone[0]["items"].append("C")
     codeSnippet: `import threading
 
 counter = 0
-lock = threading.Lock()  # Mutex Lock ປ້ອງກັນຂໍ້ມູນເສຍຫາຍ
+lock = threading.Lock()  # Mutex protects shared state
 
 def safe_increment():
     global counter
     for _ in range(10000):
-        with lock:  # ປົກປ້ອງ Critical Section
+        with lock:  # Protects critical section
             counter += 1
 
-# ສ້າງ 5 Threads ເພື່ອເຮັດວຽກພ້ອມກັນ
+# Launch 5 concurrent worker threads
 threads = [threading.Thread(target=safe_increment) for _ in range(5)]
 for t in threads: t.start()
 for t in threads: t.join()
 
-print(f"ຄ່າສຸດທ້າຍທີ່ຖືກຕ້ອງ 100%: {counter}")`,
+print(f"Final thread-safe count: {counter}")`,
     takeaways: "ສາມາດຄວບຄຸມການເຮັດວຽກພ້ອມກັນໄດ້ຢ່າງຖືກຕ້ອງ, ປ້ອງກັນ Data Collision, ແລະ ເພີ່ມຄວາມໄວໃຫ້ລະບົບ."
   },
   {
@@ -371,6 +382,7 @@ print(f"ຄ່າສຸດທ້າຍທີ່ຖືກຕ້ອງ 100%: {coun
     day: "day3",
     dayLabel: "ວັນສຸດທ້າຍ (ຮຽນ 7 ຫາ 9)",
     number: "09",
+    fileLabel: "module_09_sockets.py",
     title: "ໂມດູນ 09: ການຂຽນໂປຣແກຣມເຄືອຂ່າຍ & Network Sockets",
     subtitle: "ການຂຽນໂປຣແກຣມເຄືອຂ່າຍ — TCP Sockets, ການເຊື່ອມຕໍ່ REST API, ການສົ່ງຂໍ້ມູນ ແລະ ຄວາມໝັ້ນຄົງ",
     overview: "ຫົວຂໍ້ນີ້ເວົ້າເຖິງ Low-level Socket Programming (TCP/UDP), ການສ້າງ Client-Server Architecture, HTTP Protocol Mechanics, REST APIs, ແລະ Network Reliability.",
@@ -392,19 +404,19 @@ print(f"ຄ່າສຸດທ້າຍທີ່ຖືກຕ້ອງ 100%: {coun
     codeSnippet: `import socket
 import time
 
-def resilient_connect(host, port, max_retries=3):
-    """ເຊື່ອມຕໍ່ Socket ພ້ອມລະບົບ Retry & Exponential Backoff"""
+def resilient_connect(host: str, port: int, max_retries: int = 3):
+    """Connects TCP socket with timeout and exponential backoff retry"""
     for attempt in range(1, max_retries + 1):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(5.0)  # ກຳນົດ Timeout ປ້ອງກັນລະບົບຄ້າງ
+            s.settimeout(5.0)  # Prevents hanging connections
             s.connect((host, port))
             return s
         except (socket.timeout, ConnectionRefusedError) as err:
-            wait_time = 2 ** attempt  # ລໍຖ້າເພີ່ມຂຶ້ນເທົ່າຕົວ (2s, 4s, 8s)
-            print(f"ການເຊື່ອມຕໍ່ຫຼົ້ມເຫຼວ ({err}), ຈະລອງໃໝ່ໃນອີກ {wait_time} ວິນາທີ...")
+            wait_time = 2 ** attempt  # Exponential backoff (2s, 4s, 8s)
+            print(f"Connection failed ({err}), retrying in {wait_time}s...")
             time.sleep(wait_time)
-    raise ConnectionError("ເກີນຈຳນວນຄັ້ງທີ່ອະນຸຍາດໃຫ້ລອງໃໝ່")`,
+    raise ConnectionError("Exceeded maximum connection attempts.")`,
     takeaways: "ເຂົ້າໃຈລະບົບເຄືອຂ່າຍຕັ້ງແຕ່ລະດັບ Socket ຈົນຮອດ REST API ພ້ອມທັງວິທີຮັບມືກັບ Network Failure."
   }
 ];
@@ -503,10 +515,10 @@ function renderSlide(index) {
           </div>
         </div>
 
-        <!-- ຖັນຂວາ: ຕົວຢ່າງໂຄ້ດ & ສິ່ງທີ່ໄດ້ຮັບ -->
+        <!-- ຖັນຂວາ: ຕົວຢ່າງໂຄ້ດ (ພາສາອັງກິດ) & ສິ່ງທີ່ໄດ້ຮັບ -->
         <div class="slide-code-column">
           
-          <!-- ກ່ອງໂຄ້ດ -->
+          <!-- ກ່ອງໂຄ້ດ (English Code Terminal) -->
           <div class="code-terminal-card">
             <div class="code-header-bar">
               <div class="terminal-dots">
@@ -515,7 +527,7 @@ function renderSlide(index) {
                 <span class="dot dot-green"></span>
               </div>
               <span class="terminal-file-label">
-                <i data-lucide="file-code"></i> ຕົວຢ່າງໂຄ້ດ_${s.number}.py
+                <i data-lucide="file-code"></i> ${s.fileLabel}
               </span>
               <button type="button" class="btn-copy-code" onclick="copyCodeSnippet(this)" title="ຄັດລອກໂຄ້ດ">
                 <i data-lucide="copy"></i>
