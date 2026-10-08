@@ -1,18 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lo" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Course</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ບົດລາຍງານຫຼັກສູດ Python ຂັ້ນສູງ · ສະໄລ້ບັນຍາຍ 3 ວັນ</title>
+  <meta name="description"
+    content="ບົດລາຍງານການຮຽນຮູ້ຫຼັກສູດ Python ຂັ້ນສູງ ຮູບແບບສະໄລ້ບັນຍາຍ 3 ວັນ: ມື້ທີ 1 (ໂມດູນ 1-2), ມື້ທີ 2 (ໂມດູນ 3-6) ແລະ ວັນສຸດທ້າຍ (ໂມດູນ 7-9) ພ້ອມ 28 ຫ້ອງທົດລອງພາກປະຕິບັດ VLAB" />
 
-    <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts: Noto Sans Lao + Modern Sans + Monospace -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Noto+Sans+Lao:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Lucide Vector Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
+  <!-- ແຖບເມນູຫຼັກດ້ານເທິງ (Header Navigation) -->
+  <header class="main-header">
+    <div class="nav-shell">
+      <!-- ໂລໂກ້ ແລະ ຊື່ຫຼັກສູດ -->
+      <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="brand-section"
+        title="ໄປທີ່ເວັບໄຊຕົ້ນສະບັບ Lao AI Technology">
+        <div class="brand-icon">
+          <i data-lucide="presentation"></i>
+        </div>
+        <div class="brand-text">
+          <h1>ຫຼັກສູດ Python ຂັ້ນສູງ</h1>
+          <span>ບົດລາຍງານການຮຽນຮູ້ 3 ວັນ · Lao AI Technology</span>
+        </div>
+      </a>
+
+      <!-- ປຸ່ມເລືອກມື້ຮຽນດ່ວນ (Quick Day Jump) -->
+      <nav class="day-jump-nav" aria-label="ເລືອກມື້ຮຽນ">
+        <button type="button" class="day-filter-btn active" data-day="all" title="ເບິ່ງພາບລວມ 3 ວັນ">
+          <i data-lucide="layout-dashboard"></i>
+          <span>ພາບລວມ 3 ວັນ</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day1" title="ມື້ທີ 1: ຮຽນ ໂມດູນ 1 ຫາ 2">
+          <i data-lucide="compass"></i>
+          <span>ມື້ທີ 1: ໂມດູນ 1 - 2</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day2" title="ມື້ທີ 2: ຮຽນ ໂມດູນ 3 ຫາ 6">
+          <i data-lucide="cpu"></i>
+          <span>ມື້ທີ 2: ໂມດູນ 3 - 6</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day3" title="ວັນສຸດທ້າຍ: ຮຽນ ໂມດູນ 7 ຫາ 9">
+          <i data-lucide="network"></i>
+          <span>ວັນສຸດທ້າຍ: ໂມດູນ 7 - 9</span>
+        </button>
+      </nav>
+
+      <!-- ເຄື່ອງມືອຳນວຍຄວາມສະດວກ (Actions) -->
+      <div class="nav-actions">
+        <!-- ປຸ່ມພິມສະໄລ້ / ສົ່ງອອກ PDF -->
+        <button type="button" class="btn-pill" id="btnPrintSlides" title="ພິມສະໄລ້ ຫຼື ບັນທຶກເປັນ PDF">
+          <i data-lucide="printer"></i>
+          <span>ພິມສະໄລ້ / PDF</span>
+        </button>
+
+        <!-- ປຸ່ມເຕັມຈໍ -->
+        <button type="button" class="btn-pill" id="btnFullscreen" title="ເປີດສະແດງເຕັມຈໍ (ກົດປຸ່ມ F)">
+          <i data-lucide="maximize"></i>
+          <span>ເຕັມຈໍ</span>
+        </button>
+
+        <!-- ປຸ່ມສະຫຼັບໂໝດມືດ / ແຈ້ງ -->
+        <button type="button" class="btn-icon" id="btnThemeToggle" title="ສະຫຼັບໂໝດມືດ / ແຈ້ງ">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+
+        <!-- ລິ້ງໄປເວັບໄຊຕົ້ນສະບັບ -->
+        <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="btn-pill primary"
+          title="ເປີດເວັບໄຊຕົ້ນສະບັບ laoaitechnology.shop">
+          <span>ເວັບໄຊຕົ້ນສະບັບ</span>
+          <i data-lucide="arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ພື້ນທີ່ຫຼັກສຳລັບສະແດງສະໄລ້ບັນຍາຍ (Slide Presentation Shell) -->
+  <main class="app-container">
+    <div class="presentation-wrapper" id="presentationShell">
+      
+      <!-- ບ່ອນສະແດງເນື້ອໃນສະໄລ້ປັດຈຸບັນ (Rendered via app.js) -->
+      <section id="slideStageContainer" aria-label="ໜ້າຈໍສະໄລ້ບັນຍາຍ">
+        <!-- Injected dynamically via app.js -->
+      </section>
+
+      <!-- ແຖບຄວບຄຸມການປ່ຽນສະໄລ້ ແລະ ຄວາມຄືບໜ້າ (Slide Controller Bar) -->
+      <section class="slide-controller-bar" aria-label="ແຖບຄວບຄຸມສະໄລ້">
+        
+        <!-- ແຖວປຸ່ມຄວບຄຸມຫຼັກ (Prev, Progress, Next) -->
+        <div class="controls-nav-row">
+          <!-- ປຸ່ມສະໄລ້ກ່ອນໜ້າ -->
+          <button type="button" class="btn-nav-slide" id="btnPrevSlide" title="ສະໄລ້ກ່ອນໜ້າ (ກົດປຸ່ມ ← ຫຼື PageUp)">
+            <i data-lucide="chevron-left"></i>
+            <span>ສະໄລ້ກ່ອນໜ້າ</span>
+          </button>
+
+          <!-- ຕົວນັບ ແລະ ແຖບຄວາມຄືບໜ້າ -->
+          <div class="progress-info-container">
+            <div class="progress-text-row">
+              <span id="slideCounterText" class="slide-counter-badge">ສະໄລ້ 1 ຈາກທັງໝົດ 10</span>
+              <span class="slide-nav-hint">ໃຊ້ປຸ່ມລູກສອນ ← → ເພື່ອເລື່ອນ</span>
+            </div>
+            <div class="slide-progress-track">
+              <div id="slideProgressBar" class="slide-progress-fill" style="width: 10%;"></div>
+            </div>
+          </div>
+
+          <!-- ປຸ່ມສະໄລ້ຖັດໄປ -->
+          <button type="button" class="btn-nav-slide primary" id="btnNextSlide" title="ສະໄລ້ຖັດໄປ (ກົດປຸ່ມ → ຫຼື Spacebar)">
+            <span id="nextBtnText">ສະໄລ້ຖັດໄປ</span>
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- ແຖວປຸ່ມເລືອກສະໄລ້ແຕ່ລະບົດໂດຍກົງ (Slide Jump Strip) -->
+        <div class="slide-thumbnails-wrapper">
+          <div class="slide-thumbnails-bar" id="slideThumbStrip" role="tablist" aria-label="ເລືອກບົດຮຽນດ່ວນ">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+        <!-- ຄຳແນະນຳປຸ່ມລັດເທິງຄີບອດ -->
+        <div class="keyboard-hints">
+          <span class="hint-item"><i data-lucide="keyboard"></i> <strong>ປຸ່ມລັດ:</strong></span>
+          <span class="hint-item"><kbd>←</kbd> <kbd>→</kbd> ສະໄລ້ກ່ອນໜ້າ / ຖັດໄປ</span>
+          <span class="hint-item"><kbd>Space</kbd> ສະໄລ້ຖັດໄປ</span>
+          <span class="hint-item"><kbd>Home</kbd> / <kbd>End</kbd> ໄປໜ້າທຳອິດ / ສຸດທ້າຍ</span>
+          <span class="hint-item"><kbd>F</kbd> ເປີດ/ປິດ ເຕັມຈໍ</span>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- ສ່ວນທ້າຍໜ້າເວັບ (Footer) -->
+    <footer class="presentation-footer">
+      <div class="footer-left">
+        <strong>ບົດລາຍງານຫຼັກສູດ Python ຂັ້ນສູງ</strong> · ອອກແບບສະເພາະຮູບແບບສະໄລ້ບັນຍາຍ · ອ້າງອີງຈາກ
+        <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="footer-source-link">
+          Lao AI Technology (laoaitechnology.shop)
+        </a>
+      </div>
+      <div class="footer-right">
+        <span>ແບ່ງຕາມວາລະ 3 ວັນ · 9 ໂມດູນຫຼັກ · 28 ຫ້ອງທົດລອງພາກປະຕິບັດ VLAB</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Custom Script -->
+  <script src="app.js"></script>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
 
 </body>
 
