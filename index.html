@@ -24,102 +24,90 @@
 
 <body>
 
-  <!-- ພື້ນທີ່ຫຼັກສະແດງສະໄລ້ບັນຍາຍ (ບໍ່ມີ Header ແລະ Footer ຕາມຄຳຂໍ) -->
-  <main class="app-container">
-    <div class="presentation-wrapper" id="presentationShell">
+  <!-- Fullscreen Landscape Slide Application (No Header & No Footer tags) -->
+  <div class="presentation-wrapper" id="presentationShell">
 
-      <!-- ແຖບເມນູຄວບຄຸມດ່ວນເທິງສະໄລ້ (Slide Deck Top Bar) -->
-      <div class="presentation-top-bar">
-        <!-- ປຸ່ມເລືອກມື້ຮຽນດ່ວນ -->
-        <nav class="day-jump-nav" aria-label="ເລືອກມື້ຮຽນ">
-          <button type="button" class="day-filter-btn active" data-day="all" title="ເບິ່ງພາບລວມ 3 ວັນ">
-            <i data-lucide="layout-dashboard"></i>
-            <span>ພາບລວມ 3 ວັນ</span>
-          </button>
-          <button type="button" class="day-filter-btn" data-day="day1" title="ມື້ທີ 1: ຮຽນ ໂມດູນ 1 ຫາ 2">
-            <i data-lucide="compass"></i>
-            <span>ມື້ທີ 1: ໂມດູນ 1 - 2</span>
-          </button>
-          <button type="button" class="day-filter-btn" data-day="day2" title="ມື້ທີ 2: ຮຽນ ໂມດູນ 3 ຫາ 6">
-            <i data-lucide="cpu"></i>
-            <span>ມື້ທີ 2: ໂມດູນ 3 - 6</span>
-          </button>
-          <button type="button" class="day-filter-btn" data-day="day3" title="ວັນສຸດທ້າຍ: ຮຽນ ໂມດູນ 7 ຫາ 9">
-            <i data-lucide="network"></i>
-            <span>ວັນສຸດທ້າຍ: ໂມດູນ 7 - 9</span>
-          </button>
-        </nav>
+    <!-- ແຖບເມນູຄວບຄຸມດ່ວນດ້ານເທິງ (Compact Top Bar) -->
+    <div class="presentation-top-bar">
+      <!-- ປຸ່ມເລືອກມື້ຮຽນດ່ວນ -->
+      <nav class="day-jump-nav" aria-label="ເລືອກມື້ຮຽນ">
+        <button type="button" class="day-filter-btn active" data-day="all" title="ເບິ່ງພາບລວມ 3 ວັນ">
+          <i data-lucide="layout-dashboard"></i>
+          <span>ພາບລວມ 3 ວັນ</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day1" title="ມື້ທີ 1: ຮຽນ ໂມດູນ 1 ຫາ 2">
+          <i data-lucide="compass"></i>
+          <span>ມື້ທີ 1: ໂມດູນ 1 - 2</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day2" title="ມື້ທີ 2: ຮຽນ ໂມດູນ 3 ຫາ 6">
+          <i data-lucide="cpu"></i>
+          <span>ມື້ທີ 2: ໂມດູນ 3 - 6</span>
+        </button>
+        <button type="button" class="day-filter-btn" data-day="day3" title="ວັນສຸດທ້າຍ: ຮຽນ ໂມດູນ 7 ຫາ 9">
+          <i data-lucide="network"></i>
+          <span>ວັນສຸດທ້າຍ: ໂມດູນ 7 - 9</span>
+        </button>
+      </nav>
 
-        <!-- ເຄື່ອງມືອຳນວຍຄວາມສະດວກ (Tools) -->
-        <div class="deck-quick-tools">
-          <button type="button" class="btn-deck-tool" id="btnPrintSlides" title="ພິມສະໄລ້ ຫຼື ບັນທຶກເປັນ PDF">
-            <i data-lucide="printer"></i>
-            <span>ພິມສະໄລ້</span>
-          </button>
-          <button type="button" class="btn-deck-tool" id="btnFullscreen" title="ເປີດສະແດງເຕັມຈໍ (ກົດປຸ່ມ F)">
-            <i data-lucide="maximize"></i>
-            <span>ເຕັມຈໍ</span>
-          </button>
-          <button type="button" class="btn-deck-tool-icon" id="btnThemeToggle" title="ສະຫຼັບໂໝດມືດ / ແຈ້ງ">
-            <i data-lucide="moon" id="themeIcon"></i>
-          </button>
+      <!-- ເຄື່ອງມືອຳນວຍຄວາມສະດວກ (Tools) -->
+      <div class="deck-quick-tools">
+        <button type="button" class="btn-deck-tool" id="btnPrintSlides" title="ພິມສະໄລ້ ຫຼື ບັນທຶກເປັນ PDF">
+          <i data-lucide="printer"></i>
+          <span>ພິມສະໄລ້</span>
+        </button>
+        <button type="button" class="btn-deck-tool" id="btnFullscreen" title="ເປີດສະແດງເຕັມຈໍ (ກົດປຸ່ມ F)">
+          <i data-lucide="maximize"></i>
+          <span>ເຕັມຈໍ</span>
+        </button>
+        <button type="button" class="btn-deck-tool-icon" id="btnThemeToggle" title="ສະຫຼັບໂໝດມືດ / ແຈ້ງ">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- ບ່ອນສະແດງເນື້ອໃນສະໄລ້ປັດຈຸບັນ (Rendered via app.js) -->
+    <main id="slideStageContainer" aria-label="ໜ້າຈໍສະໄລ້ບັນຍາຍ">
+      <!-- Injected dynamically via app.js -->
+    </main>
+
+    <!-- ແຖບຄວບຄຸມສະໄລ້ດ້ານລຸ່ມແນວນອນ (Horizontal Slide Dock) -->
+    <div class="slide-controller-bar" aria-label="ແຖບຄວບຄຸມສະໄລ້">
+      
+      <!-- ປຸ່ມສະໄລ້ກ່ອນໜ້າ -->
+      <button type="button" class="btn-nav-slide" id="btnPrevSlide" title="ສະໄລ້ກ່ອນໜ້າ (ກົດປຸ່ມ ← ຫຼື PageUp)">
+        <i data-lucide="chevron-left"></i>
+        <span>ກ່ອນໜ້າ</span>
+      </button>
+
+      <!-- ຕົວນັບ ແລະ ແຖບຄວາມຄືບໜ້າ -->
+      <div class="progress-info-container">
+        <span id="slideCounterText" class="slide-counter-badge">ສະໄລ້ 1 / 10</span>
+        <div class="slide-progress-track">
+          <div id="slideProgressBar" class="slide-progress-fill" style="width: 10%;"></div>
         </div>
       </div>
-      
-      <!-- ບ່ອນສະແດງເນື້ອໃນສະໄລ້ປັດຈຸບັນ (Rendered via app.js) -->
-      <section id="slideStageContainer" aria-label="ໜ້າຈໍສະໄລ້ບັນຍາຍ">
-        <!-- Injected dynamically via app.js -->
-      </section>
 
-      <!-- ແຖບຄວບຄຸມການປ່ຽນສະໄລ້ ແລະ ຄວາມຄືບໜ້າ (Slide Controller Bar) -->
-      <section class="slide-controller-bar" aria-label="ແຖບຄວບຄຸມສະໄລ້">
-        
-        <!-- ແຖວປຸ່ມຄວບຄຸມຫຼັກ (Prev, Progress, Next) -->
-        <div class="controls-nav-row">
-          <!-- ປຸ່ມສະໄລ້ກ່ອນໜ້າ -->
-          <button type="button" class="btn-nav-slide" id="btnPrevSlide" title="ສະໄລ້ກ່ອນໜ້າ (ກົດປຸ່ມ ← ຫຼື PageUp)">
-            <i data-lucide="chevron-left"></i>
-            <span>ສະໄລ້ກ່ອນໜ້າ</span>
-          </button>
-
-          <!-- ຕົວນັບ ແລະ ແຖບຄວາມຄືບໜ້າ -->
-          <div class="progress-info-container">
-            <div class="progress-text-row">
-              <span id="slideCounterText" class="slide-counter-badge">ສະໄລ້ 1 ຈາກທັງໝົດ 10</span>
-              <span class="slide-nav-hint">ໃຊ້ປຸ່ມລູກສອນ ← → ເພື່ອເລື່ອນ</span>
-            </div>
-            <div class="slide-progress-track">
-              <div id="slideProgressBar" class="slide-progress-fill" style="width: 10%;"></div>
-            </div>
-          </div>
-
-          <!-- ປຸ່ມສະໄລ້ຖັດໄປ -->
-          <button type="button" class="btn-nav-slide primary" id="btnNextSlide" title="ສະໄລ້ຖັດໄປ (ກົດປຸ່ມ → ຫຼື Spacebar)">
-            <span id="nextBtnText">ສະໄລ້ຖັດໄປ</span>
-            <i data-lucide="chevron-right"></i>
-          </button>
+      <!-- ແຖວປຸ່ມເລືອກສະໄລ້ແຕ່ລະບົດໂດຍກົງ (Thumbnail Pills) -->
+      <div class="slide-thumbnails-wrapper">
+        <div class="slide-thumbnails-bar" id="slideThumbStrip" role="tablist" aria-label="ເລືອກບົດຮຽນດ່ວນ">
+          <!-- Populated dynamically via app.js -->
         </div>
+      </div>
 
-        <!-- ແຖວປຸ່ມເລືອກສະໄລ້ແຕ່ລະບົດໂດຍກົງ (Slide Jump Strip) -->
-        <div class="slide-thumbnails-wrapper">
-          <div class="slide-thumbnails-bar" id="slideThumbStrip" role="tablist" aria-label="ເລືອກບົດຮຽນດ່ວນ">
-            <!-- Populated dynamically via app.js -->
-          </div>
-        </div>
+      <!-- ປຸ່ມລັດຄີບອດ (Keyboard Hints Badge) -->
+      <div class="keyboard-hints-pill" title="ກົດປຸ່ມລູກສອນ ← → ຫຼື Spacebar ເພື່ອປ່ຽນສະໄລ້, F ເພື່ອເຕັມຈໍ">
+        <kbd>←</kbd><kbd>→</kbd><kbd>Space</kbd><kbd>F</kbd>
+      </div>
 
-        <!-- ຄຳແນະນຳປຸ່ມລັດເທິງຄີບອດ -->
-        <div class="keyboard-hints">
-          <span class="hint-item"><i data-lucide="keyboard"></i> <strong>ປຸ່ມລັດ:</strong></span>
-          <span class="hint-item"><kbd>←</kbd> <kbd>→</kbd> ສະໄລ້ກ່ອນໜ້າ / ຖັດໄປ</span>
-          <span class="hint-item"><kbd>Space</kbd> ສະໄລ້ຖັດໄປ</span>
-          <span class="hint-item"><kbd>Home</kbd> / <kbd>End</kbd> ໄປໜ້າທຳອິດ / ສຸດທ້າຍ</span>
-          <span class="hint-item"><kbd>F</kbd> ເປີດ/ປິດ ເຕັມຈໍ</span>
-        </div>
-
-      </section>
+      <!-- ປຸ່ມສະໄລ້ຖັດໄປ -->
+      <button type="button" class="btn-nav-slide primary" id="btnNextSlide" title="ສະໄລ້ຖັດໄປ (ກົດປຸ່ມ → ຫຼື Spacebar)">
+        <span id="nextBtnText">ຖັດໄປ</span>
+        <i data-lucide="chevron-right"></i>
+      </button>
 
     </div>
-  </main>
+
+  </div>
 
   <!-- Custom Script -->
   <script src="app.js"></script>
