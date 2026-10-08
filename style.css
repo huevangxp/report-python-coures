@@ -1,6 +1,6 @@
 /* ==========================================================================
    ADVANCED PYTHON COURSE REPORT — SLIDE PRESENTATION STYLESHEET
-   ອອກແບບສະເພາະຮູບແບບສະໄລ້ບັນຍາຍ 100% ພາສາລາວ
+   ອອກແບບສະເພາະຮູບແບບສະໄລ້ບັນຍາຍ 100% ພາສາລາວ (ບໍ່ມີ Header & Footer)
    Design System: Modern Glassmorphic Teal & Slate with Noto Sans Lao
    ========================================================================== */
 
@@ -52,7 +52,7 @@
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
   --shadow-md: 0 4px 18px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.09), 0 4px 12px rgba(15, 23, 42, 0.04);
-  --shadow-canvas: 0 20px 48px -10px rgba(13, 148, 136, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.06);
+  --shadow-canvas: 0 20px 48px -10px rgba(13, 148, 136, 0.14), 0 4px 16px -2px rgba(15, 23, 42, 0.06);
 
   /* Typography */
   --font-main: 'Plus Jakarta Sans', 'Noto Sans Lao', system-ui, -apple-system, sans-serif;
@@ -116,6 +116,8 @@ body {
     radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.06) 0%, transparent 45%);
   background-size: 30px 30px, 100% 100%, 100% 100%;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 [data-theme="dark"] body {
@@ -125,84 +127,55 @@ body {
     radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 45%);
 }
 
-/* Main App Container */
+/* Main App Container (Centered Clean Presentation Layout) */
 .app-container {
-  width: min(1360px, calc(100% - 40px));
+  width: min(1380px, calc(100% - 36px));
   margin: 0 auto;
-  padding: 24px 0 60px;
+  padding: 24px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* ==========================================================================
-   NAVIGATION BAR
+   PRESENTATION STAGE WRAPPER
    ========================================================================== */
-.main-header {
-  position: sticky;
-  top: 0;
-  z-index: 990;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+.presentation-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-canvas);
+  overflow: hidden;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
-.nav-shell {
-  width: min(1360px, calc(100% - 40px));
-  margin: 0 auto;
-  min-height: 70px;
+/* ==========================================================================
+   PRESENTATION TOP BAR (Integrated into Slide Deck, No Header tag)
+   ========================================================================== */
+.presentation-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding: 14px 28px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
   flex-wrap: wrap;
-  padding: 8px 0;
 }
 
-.brand-section {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.brand-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #0d9488, #0284c7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 20px;
-  box-shadow: 0 4px 14px var(--primary-glow);
-  flex-shrink: 0;
-}
-
-.brand-text h1 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: var(--text-main);
-  line-height: 1.25;
-}
-
-.brand-text span {
-  font-size: 0.8rem;
-  color: var(--text-subtle);
-  font-weight: 600;
-}
-
-/* Quick Day Jump Navigator */
+/* Day Jump Navigator */
 .day-jump-nav {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--bg-surface);
+  background: var(--bg);
   padding: 4px 6px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 .day-filter-btn {
@@ -243,54 +216,41 @@ body {
   background: var(--day3-color);
 }
 
-/* Utility Actions */
-.nav-actions {
+/* Quick Tools in Deck Bar */
+.deck-quick-tools {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.btn-pill {
+.btn-deck-tool {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  text-decoration: none;
   border: 1px solid var(--border);
-  background: var(--bg-surface);
+  background: var(--bg);
   color: var(--text-main);
   cursor: pointer;
   transition: var(--transition);
   white-space: nowrap;
 }
 
-.btn-pill:hover {
+.btn-deck-tool:hover {
   border-color: var(--primary);
   color: var(--primary);
   transform: translateY(-1px);
 }
 
-.btn-pill.primary {
-  background: linear-gradient(135deg, var(--primary), #0284c7);
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 3px 12px var(--primary-glow);
-}
-
-.btn-pill.primary:hover {
-  filter: brightness(1.08);
-  box-shadow: 0 6px 18px var(--primary-glow);
-}
-
-.btn-icon {
-  width: 38px;
-  height: 38px;
+.btn-deck-tool-icon {
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: var(--bg-surface);
+  background: var(--bg);
   color: var(--text-main);
   display: flex;
   align-items: center;
@@ -299,29 +259,17 @@ body {
   transition: var(--transition);
 }
 
-.btn-icon:hover {
+.btn-deck-tool-icon:hover {
   border-color: var(--primary);
   color: var(--primary);
-  transform: scale(1.04);
-}
-
-/* ==========================================================================
-   PRESENTATION STAGE WRAPPER
-   ========================================================================== */
-.presentation-wrapper {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-canvas);
-  overflow: hidden;
-  transition: var(--transition);
+  transform: scale(1.05);
 }
 
 /* ==========================================================================
    SLIDE CANVAS (Active Slide)
    ========================================================================== */
 .presentation-canvas {
-  padding: 36px 40px;
+  padding: 32px 36px;
   animation: slideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -338,8 +286,8 @@ body {
 
 /* Slide Header Bar */
 .slide-header-bar {
-  margin-bottom: 28px;
-  padding-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -347,7 +295,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
@@ -413,15 +361,15 @@ body {
 .slide-split-body {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 32px;
+  gap: 28px;
   align-items: start;
 }
 
-/* Left Column: Information */
+/* Left Column: Information (Lao Explanations) */
 .slide-info-column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 /* Overview Callout Box */
@@ -454,7 +402,7 @@ body {
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 20px 22px;
+  padding: 18px 20px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -462,10 +410,10 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 800;
   color: var(--text-main);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .section-title i {
@@ -482,7 +430,7 @@ body {
 .learning-list li {
   position: relative;
   padding-left: 20px;
-  font-size: 0.93rem;
+  font-size: 0.92rem;
   color: var(--text-main);
   line-height: 1.55;
 }
@@ -580,14 +528,14 @@ body {
   transform: translateY(-1px);
 }
 
-/* Right Column: Code & Takeaways */
+/* Right Column: Code (English) & Takeaways */
 .slide-code-column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
-/* Code Terminal Card */
+/* Code Terminal Card (English Code) */
 .code-terminal-card {
   background: #0f172a;
   border: 1px solid #1e293b;
@@ -711,10 +659,10 @@ body {
 .slide-controller-bar {
   background: var(--bg-surface);
   border-top: 1px solid var(--border);
-  padding: 24px 32px;
+  padding: 22px 32px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .controls-nav-row {
@@ -890,30 +838,6 @@ kbd {
 }
 
 /* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.presentation-footer {
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  font-size: 0.82rem;
-  color: var(--text-subtle);
-  flex-wrap: wrap;
-}
-
-.footer-source-link {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.footer-source-link:hover {
-  text-decoration: underline;
-}
-
-/* ==========================================================================
    FULLSCREEN MODE
    ========================================================================== */
 :fullscreen .presentation-wrapper,
@@ -937,7 +861,9 @@ kbd {
   margin: 0 auto;
 }
 
+:fullscreen .presentation-top-bar,
 :fullscreen .slide-controller-bar,
+:-webkit-full-screen .presentation-top-bar,
 :-webkit-full-screen .slide-controller-bar {
   max-width: 1400px;
   width: 100%;
@@ -953,19 +879,18 @@ kbd {
     gap: 24px;
   }
 
-  .nav-shell {
+  .presentation-top-bar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 12px 0;
+    padding: 12px 18px;
   }
 
   .day-jump-nav {
     width: 100%;
     overflow-x: auto;
-    padding: 6px;
   }
 
-  .nav-actions {
+  .deck-quick-tools {
     width: 100%;
     justify-content: flex-end;
   }
@@ -973,30 +898,30 @@ kbd {
 
 @media (max-width: 768px) {
   .app-container {
-    width: calc(100% - 24px);
-    padding: 16px 0 40px;
+    width: calc(100% - 16px);
+    padding: 12px 0;
   }
 
   .presentation-canvas {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
 
   .slide-title-primary {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
   .slide-subtitle-desc {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
   }
 
   .slide-controller-bar {
-    padding: 18px 20px;
+    padding: 16px 16px;
   }
 
   .controls-nav-row {
     flex-direction: column;
     align-items: stretch;
-    gap: 14px;
+    gap: 12px;
   }
 
   .btn-nav-slide {
@@ -1021,10 +946,9 @@ kbd {
     color: #000000 !important;
   }
 
-  .main-header,
+  .presentation-top-bar,
   .slide-controller-bar,
-  .btn-copy-code,
-  .presentation-footer {
+  .btn-copy-code {
     display: none !important;
   }
 
