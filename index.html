@@ -24,73 +24,47 @@
 
 <body>
 
-  <!-- ແຖບເມນູຫຼັກດ້ານເທິງ (Header Navigation) -->
-  <header class="main-header">
-    <div class="nav-shell">
-      <!-- ໂລໂກ້ ແລະ ຊື່ຫຼັກສູດ -->
-      <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="brand-section"
-        title="ໄປທີ່ເວັບໄຊຕົ້ນສະບັບ Lao AI Technology">
-        <div class="brand-icon">
-          <i data-lucide="presentation"></i>
-        </div>
-        <div class="brand-text">
-          <h1>ຫຼັກສູດ Python ຂັ້ນສູງ</h1>
-          <span>ບົດລາຍງານການຮຽນຮູ້ 3 ວັນ · Lao AI Technology</span>
-        </div>
-      </a>
-
-      <!-- ປຸ່ມເລືອກມື້ຮຽນດ່ວນ (Quick Day Jump) -->
-      <nav class="day-jump-nav" aria-label="ເລືອກມື້ຮຽນ">
-        <button type="button" class="day-filter-btn active" data-day="all" title="ເບິ່ງພາບລວມ 3 ວັນ">
-          <i data-lucide="layout-dashboard"></i>
-          <span>ພາບລວມ 3 ວັນ</span>
-        </button>
-        <button type="button" class="day-filter-btn" data-day="day1" title="ມື້ທີ 1: ຮຽນ ໂມດູນ 1 ຫາ 2">
-          <i data-lucide="compass"></i>
-          <span>ມື້ທີ 1: ໂມດູນ 1 - 2</span>
-        </button>
-        <button type="button" class="day-filter-btn" data-day="day2" title="ມື້ທີ 2: ຮຽນ ໂມດູນ 3 ຫາ 6">
-          <i data-lucide="cpu"></i>
-          <span>ມື້ທີ 2: ໂມດູນ 3 - 6</span>
-        </button>
-        <button type="button" class="day-filter-btn" data-day="day3" title="ວັນສຸດທ້າຍ: ຮຽນ ໂມດູນ 7 ຫາ 9">
-          <i data-lucide="network"></i>
-          <span>ວັນສຸດທ້າຍ: ໂມດູນ 7 - 9</span>
-        </button>
-      </nav>
-
-      <!-- ເຄື່ອງມືອຳນວຍຄວາມສະດວກ (Actions) -->
-      <div class="nav-actions">
-        <!-- ປຸ່ມພິມສະໄລ້ / ສົ່ງອອກ PDF -->
-        <button type="button" class="btn-pill" id="btnPrintSlides" title="ພິມສະໄລ້ ຫຼື ບັນທຶກເປັນ PDF">
-          <i data-lucide="printer"></i>
-          <span>ພິມສະໄລ້ / PDF</span>
-        </button>
-
-        <!-- ປຸ່ມເຕັມຈໍ -->
-        <button type="button" class="btn-pill" id="btnFullscreen" title="ເປີດສະແດງເຕັມຈໍ (ກົດປຸ່ມ F)">
-          <i data-lucide="maximize"></i>
-          <span>ເຕັມຈໍ</span>
-        </button>
-
-        <!-- ປຸ່ມສະຫຼັບໂໝດມືດ / ແຈ້ງ -->
-        <button type="button" class="btn-icon" id="btnThemeToggle" title="ສະຫຼັບໂໝດມືດ / ແຈ້ງ">
-          <i data-lucide="moon" id="themeIcon"></i>
-        </button>
-
-        <!-- ລິ້ງໄປເວັບໄຊຕົ້ນສະບັບ -->
-        <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="btn-pill primary"
-          title="ເປີດເວັບໄຊຕົ້ນສະບັບ laoaitechnology.shop">
-          <span>ເວັບໄຊຕົ້ນສະບັບ</span>
-          <i data-lucide="arrow-up-right"></i>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ພື້ນທີ່ຫຼັກສຳລັບສະແດງສະໄລ້ບັນຍາຍ (Slide Presentation Shell) -->
+  <!-- ພື້ນທີ່ຫຼັກສະແດງສະໄລ້ບັນຍາຍ (ບໍ່ມີ Header ແລະ Footer ຕາມຄຳຂໍ) -->
   <main class="app-container">
     <div class="presentation-wrapper" id="presentationShell">
+
+      <!-- ແຖບເມນູຄວບຄຸມດ່ວນເທິງສະໄລ້ (Slide Deck Top Bar) -->
+      <div class="presentation-top-bar">
+        <!-- ປຸ່ມເລືອກມື້ຮຽນດ່ວນ -->
+        <nav class="day-jump-nav" aria-label="ເລືອກມື້ຮຽນ">
+          <button type="button" class="day-filter-btn active" data-day="all" title="ເບິ່ງພາບລວມ 3 ວັນ">
+            <i data-lucide="layout-dashboard"></i>
+            <span>ພາບລວມ 3 ວັນ</span>
+          </button>
+          <button type="button" class="day-filter-btn" data-day="day1" title="ມື້ທີ 1: ຮຽນ ໂມດູນ 1 ຫາ 2">
+            <i data-lucide="compass"></i>
+            <span>ມື້ທີ 1: ໂມດູນ 1 - 2</span>
+          </button>
+          <button type="button" class="day-filter-btn" data-day="day2" title="ມື້ທີ 2: ຮຽນ ໂມດູນ 3 ຫາ 6">
+            <i data-lucide="cpu"></i>
+            <span>ມື້ທີ 2: ໂມດູນ 3 - 6</span>
+          </button>
+          <button type="button" class="day-filter-btn" data-day="day3" title="ວັນສຸດທ້າຍ: ຮຽນ ໂມດູນ 7 ຫາ 9">
+            <i data-lucide="network"></i>
+            <span>ວັນສຸດທ້າຍ: ໂມດູນ 7 - 9</span>
+          </button>
+        </nav>
+
+        <!-- ເຄື່ອງມືອຳນວຍຄວາມສະດວກ (Tools) -->
+        <div class="deck-quick-tools">
+          <button type="button" class="btn-deck-tool" id="btnPrintSlides" title="ພິມສະໄລ້ ຫຼື ບັນທຶກເປັນ PDF">
+            <i data-lucide="printer"></i>
+            <span>ພິມສະໄລ້</span>
+          </button>
+          <button type="button" class="btn-deck-tool" id="btnFullscreen" title="ເປີດສະແດງເຕັມຈໍ (ກົດປຸ່ມ F)">
+            <i data-lucide="maximize"></i>
+            <span>ເຕັມຈໍ</span>
+          </button>
+          <button type="button" class="btn-deck-tool-icon" id="btnThemeToggle" title="ສະຫຼັບໂໝດມືດ / ແຈ້ງ">
+            <i data-lucide="moon" id="themeIcon"></i>
+          </button>
+        </div>
+      </div>
       
       <!-- ບ່ອນສະແດງເນື້ອໃນສະໄລ້ປັດຈຸບັນ (Rendered via app.js) -->
       <section id="slideStageContainer" aria-label="ໜ້າຈໍສະໄລ້ບັນຍາຍ">
@@ -145,19 +119,6 @@
       </section>
 
     </div>
-
-    <!-- ສ່ວນທ້າຍໜ້າເວັບ (Footer) -->
-    <footer class="presentation-footer">
-      <div class="footer-left">
-        <strong>ບົດລາຍງານຫຼັກສູດ Python ຂັ້ນສູງ</strong> · ອອກແບບສະເພາະຮູບແບບສະໄລ້ບັນຍາຍ · ອ້າງອີງຈາກ
-        <a href="https://www.laoaitechnology.shop/" target="_blank" rel="noopener noreferrer" class="footer-source-link">
-          Lao AI Technology (laoaitechnology.shop)
-        </a>
-      </div>
-      <div class="footer-right">
-        <span>ແບ່ງຕາມວາລະ 3 ວັນ · 9 ໂມດູນຫຼັກ · 28 ຫ້ອງທົດລອງພາກປະຕິບັດ VLAB</span>
-      </div>
-    </footer>
   </main>
 
   <!-- Custom Script -->
