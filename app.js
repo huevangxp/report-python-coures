@@ -693,7 +693,7 @@ function renderSlide(index) {
   // ອັບເດດແຖບຄວບຄຸມດ້ານລຸ່ມ
   const counterEl = document.getElementById("slideCounterText");
   if (counterEl) {
-    counterEl.textContent = `ສະໄລ້ ${currentSlideIndex + 1} ຈາກທັງໝົດ ${total}`;
+    counterEl.textContent = `ສະໄລ້ ${currentSlideIndex + 1} / ${total}`;
   }
 
   const progressEl = document.getElementById("slideProgressBar");
