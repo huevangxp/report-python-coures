@@ -590,9 +590,11 @@ function renderSlide(index) {
           <span class="slide-day-badge ${getDayClass(s.day)}">
             <i data-lucide="calendar"></i> ${s.dayLabel}
           </span>
-          <span class="slide-module-number">
-            ${s.number === "ພາບລວມ" ? "ພາບລວມຫຼັກສູດ 3 ວັນ" : `ໂມດູນ ${s.number}`}
-          </span>
+          ${s.number !== "ພາບລວມ" ? `
+            <span class="slide-module-number">ໂມດູນ ${s.number}</span>
+          ` : `
+            <span class="slide-module-number">ວາລະ 9 ໂມດູນ</span>
+          `}
         </div>
 
         <h1 class="slide-title-primary">${s.title}</h1>
