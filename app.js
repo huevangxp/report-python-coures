@@ -596,7 +596,7 @@ function renderSlide(index) {
   const slideNumFormatted = currentSlideIndex < 9 ? `0${currentSlideIndex + 1}` : `${currentSlideIndex + 1}`;
 
   container.innerHTML = `
-    <article class="presentation-canvas" id="activeSlideCard">
+    <article class="presentation-canvas ${getDayClass(s.day)}" id="activeSlideCard">
       <!-- ຫົວຂໍ້ດ້ານເທິງຂອງສະໄລ້ -->
       <div class="slide-header-bar">
         <div class="slide-header-top">
