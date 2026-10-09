@@ -28,55 +28,28 @@ const SLIDES_DATA = [
       { code: "ມື້ທີ 2", name: "4 ໂມດູນ", desc: "Iterators, Generators, Closures & Functional Programming" },
       { code: "ວັນສຸດທ້າຍ", name: "3 ໂມດູນ", desc: "ກົນໄກໜ່ວຍຄວາມຈຳ, Concurrency & Network Sockets" }
     ],
-    codeSnippet: `"""
-Advanced Python 3-Day Engineering Pipeline
-Demonstrating real-world integration of topics from Day 1, Day 2, and Day 3
-"""
-import asyncio
-import time
-from typing import AsyncGenerator
+    codeSnippet: `# 3-Day Advanced Python Course Curriculum
+COURSE_SCHEDULE = {
+    "Day_1": [
+        "Module 01: Python in the Real World & Architecture",
+        "Module 02: Advanced Object-Oriented Programming (OOP)"
+    ],
+    "Day_2": [
+        "Module 03: Design with Iterator Protocol",
+        "Module 04: Design with Generator & Memory Pipelines",
+        "Module 05: Production Closures & Decorators",
+        "Module 06: Python Lambda & Functional Tools"
+    ],
+    "Day_3": [
+        "Module 07: Data & Memory Mechanics",
+        "Module 08: Concurrency, Threading & AsyncIO",
+        "Module 09: Network Programming & TCP Sockets"
+    ]
+}
 
-# [Day 1] OOP & Invariants: Structured domain model with validation
-class Transaction:
-    __slots__ = ("tx_id", "amount", "status")  # [Day 3] Memory optimization
-    
-    def __init__(self, tx_id: str, amount: float):
-        if amount <= 0:
-            raise ValueError("Transaction amount must be strictly positive.")
-        self.tx_id = tx_id
-        self.amount = amount
-        self.status = "PENDING"
-
-# [Day 2] Production Decorator: Measures execution latency
-def trace_latency(func):
-    async def wrapper(*args, **kwargs):
-        t0 = time.perf_counter()
-        result = await func(*args, **kwargs)
-        duration = time.perf_counter() - t0
-        print(f"[{func.__name__}] Latency: {duration * 1000:.2f}ms")
-        return result
-    return wrapper
-
-# [Day 2] Lazy Generator: Streams records with O(1) memory
-async def data_stream() -> AsyncGenerator[Transaction, None]:
-    for i in range(1, 4):
-        yield Transaction(f"TX-{i:04d}", i * 250.0)
-
-# [Day 3] Concurrency & Network: Asynchronous event loop dispatch
-@trace_latency
-async def process_record(tx: Transaction) -> str:
-    await asyncio.sleep(0.02)  # Simulates async network I/O
-    tx.status = "VERIFIED"
-    return f"{tx.tx_id} -> USD {tx.amount:,.2f} ({tx.status})"
-
-async def main():
-    # Asynchronously process streamed records concurrently
-    tasks = [process_record(tx) async for tx in data_stream()]
-    results = await asyncio.gather(*tasks)
-    print("Batch processing completed:", results)
-
-if __name__ == "__main__":
-    asyncio.run(main())`,
+print("Total: 3 Days | 9 Core Modules | 28 Hands-on VLABs")
+for day, modules in COURSE_SCHEDULE.items():
+    print(f"[{day}] -> {len(modules)} Core Modules")`,
     takeaways: "ເຂົ້າໃຈເສັ້ນທາງການພັດທະນາຊອບແວຕັ້ງແຕ່ໂຄງສ້າງລະບົບ, ການຄວບຄຸມ Memory ຈົນຮອດລະບົບ Network."
   },
 
