@@ -567,6 +567,44 @@ document.addEventListener("DOMContentLoaded", () => {
   initTheme();
 });
 
+function highlightPython(code) {
+  const tokens = [];
+  // ປ້ອງກັນ comments (#...) ແລະ strings ("""...""", "...", '...')
+  const protectedCode = code.replace(/(#[^\n]*)|("""[\s\S]*?"""|'''[\s\S]*?''')|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/g, (match, comment) => {
+    const idx = tokens.length;
+    if (comment) {
+      tokens.push(`<span class="token-comment">${escapeHtml(match)}</span>`);
+    } else {
+      tokens.push(`<span class="token-string">${escapeHtml(match)}</span>`);
+    }
+    return `___TOKEN_${idx}___`;
+  });
+
+  let html = escapeHtml(protectedCode);
+
+  // Decorators (@something)
+  html = html.replace(/(@[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)/g, '<span class="token-decorator">$1</span>');
+
+  // Keywords
+  const keywords = /\b(def|class|return|import|from|as|async|await|if|else|elif|try|except|finally|with|yield|raise|for|while|in|is|not|and|or|lambda|pass|break|continue)\b/g;
+  html = html.replace(keywords, '<span class="token-keyword">$1</span>');
+
+  // Builtins & Types
+  const builtins = /\b(True|False|None|self|super|print|len|range|open|list|dict|set|tuple|int|float|str|bool|bytes|sum|min|max|sorted|map|filter|any|all|isinstance|issubclass)\b/g;
+  html = html.replace(builtins, '<span class="token-builtin">$1</span>');
+
+  // Function / Class definition names
+  html = html.replace(/\b(def|class)\s+([a-zA-Z_]\w*)/g, '$1 <span class="token-func">$2</span>');
+
+  // Numbers
+  html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="token-number">$1</span>');
+
+  // Restore protected tokens
+  html = html.replace(/___TOKEN_(\d+)___/g, (_, idx) => tokens[parseInt(idx, 10)]);
+
+  return html;
+}
+
 function renderSlide(index) {
   if (index < 0) index = 0;
   if (index >= SLIDES_DATA.length) index = SLIDES_DATA.length - 1;
@@ -582,19 +620,31 @@ function renderSlide(index) {
   const container = document.getElementById("slideStageContainer");
   if (!container) return;
 
+  const slideNumFormatted = currentSlideIndex < 9 ? `0${currentSlideIndex + 1}` : `${currentSlideIndex + 1}`;
+
   container.innerHTML = `
     <article class="presentation-canvas" id="activeSlideCard">
       <!-- ຫົວຂໍ້ດ້ານເທິງຂອງສະໄລ້ -->
       <div class="slide-header-bar">
-        <div class="slide-badge-row">
-          <span class="slide-day-badge ${getDayClass(s.day)}">
-            <i data-lucide="calendar"></i> ${s.dayLabel}
-          </span>
-          ${s.number !== "ພາບລວມ" ? `
-            <span class="slide-module-number">ໂມດູນ ${s.number}</span>
-          ` : `
-            <span class="slide-module-number">ວາລະ 9 ໂມດູນ</span>
-          `}
+        <div class="slide-header-top">
+          <div class="slide-badge-row">
+            <span class="slide-day-badge ${getDayClass(s.day)}">
+              <span class="badge-pulse-dot"></span>
+              <i data-lucide="calendar"></i>
+              <span>${s.dayLabel}</span>
+            </span>
+            ${s.number !== "ພາບລວມ" ? `
+              <span class="slide-module-number">ໂມດູນ ${s.number}</span>
+            ` : `
+              <span class="slide-module-number">ວາລະ 9 ໂມດູນ</span>
+            `}
+          </div>
+
+          <div class="slide-index-counter">
+            <span class="current-index">${slideNumFormatted}</span>
+            <span class="index-sep">/</span>
+            <span class="total-index">${total < 10 ? `0${total}` : total}</span>
+          </div>
         </div>
 
         <h1 class="slide-title-primary">${s.title}</h1>
@@ -622,7 +672,12 @@ function renderSlide(index) {
               <span>ເນື້ອໃນຫຼັກທີ່ໄດ້ຮຽນຮູ້ຢ່າງເລິກເຊິ່ງ:</span>
             </h3>
             <ul class="learning-list">
-              ${s.whatWasLearned.map(item => `<li>${item}</li>`).join("")}
+              ${s.whatWasLearned.map(item => `
+                <li class="learning-item">
+                  <span class="check-badge"><i data-lucide="check"></i></span>
+                  <span class="learning-text">${item}</span>
+                </li>
+              `).join("")}
             </ul>
           </div>
 
@@ -644,7 +699,8 @@ function renderSlide(index) {
             <div class="labs-grid-chips">
               ${s.labs.map(lab => `
                 <div class="lab-pill-chip" title="${lab.desc}">
-                  <strong>[${lab.code}]</strong> ${lab.name}
+                  <strong class="lab-code-badge">${lab.code}</strong>
+                  <span class="lab-name-text">${lab.name}</span>
                 </div>
               `).join("")}
             </div>
@@ -670,7 +726,7 @@ function renderSlide(index) {
                 <span>ຄັດລອກໂຄ້ດ</span>
               </button>
             </div>
-            <pre class="terminal-code-body"><code>${escapeHtml(s.codeSnippet)}</code></pre>
+            <pre class="terminal-code-body"><code>${highlightPython(s.codeSnippet)}</code></pre>
           </div>
 
           <!-- ກ່ອງສິ່ງສຳຄັນທີ່ໄດ້ຮັບ -->
@@ -746,8 +802,8 @@ function renderThumbnails() {
   if (!strip) return;
 
   strip.innerHTML = SLIDES_DATA.map((s, idx) => `
-    <button type="button" class="thumb-pill-btn ${idx === currentSlideIndex ? 'active' : ''}" onclick="goToSlide(${idx})" title="${s.title}">
-      ${idx === 0 ? "📋 ພາບລວມ 3 ວັນ" : `ໂມດູນ ${s.number}`}
+    <button type="button" class="thumb-pill-btn ${getDayClass(s.day)} ${idx === currentSlideIndex ? 'active' : ''}" onclick="goToSlide(${idx})" title="${s.title}">
+      ${idx === 0 ? "📋 ພາບລວມ" : `M${s.number}`}
     </button>
   `).join("");
 
